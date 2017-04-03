@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/jashkenas/backbone#readme"
-
-    >backbone (v1.3.3)</a>
+    <a href="https://github.com/jashkenas/backbone#readme">backbone (v1.3.3)</a>
 </h1>
 <h4>Give your JS App some Backbone with Models, Views, Collections, and Events.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.backbone">module backbone</a><ol>
 
@@ -2313,7 +2306,7 @@
   this.checkUrl = _.bind(this.checkUrl, this);
 
   // Ensure that `History` can be used outside of the browser.
-  if (typeof window !== &#x27;undefined&#x27;) {
+  if (typeof window !== 'undefined') {
     this.location = window.location;
     this.history = window.history;
   }
@@ -2337,7 +2330,7 @@
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.parse(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.set(attrs, options);
   this.changed = {};
@@ -2374,7 +2367,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">View = function (options) {
-  this.cid = _.uniqueId(&#x27;view&#x27;);
+  this.cid = _.uniqueId('view');
   _.extend(this, _.pick(options, viewOptions));
   this._ensureElement();
   this.initialize.apply(this, arguments);
@@ -2403,13 +2396,13 @@
 
   // Make the request, allowing the user to override any Ajax options.
   var xhr = options.xhr = Backbone.<span class="apidocCodeKeywordSpan">ajax</span>(_.extend(params, options));
-  model.trigger(&#x27;request&#x27;, model, xhr, options);
+  model.trigger('request', model, xhr, options);
   return xhr;
 };
 
 // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
 var methodMap = {
-  &#x27;create&#x27;: &#x27;POST&#x27;,
+  'create': 'POST',
 ...</pre></li>
     </ul>
 
@@ -2434,7 +2427,7 @@ var methodMap = {
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -2455,14 +2448,14 @@ Events.listenToOnce = function(obj, name, callback) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -2540,10 +2533,10 @@ var onceMap = function(map, name, callback, offer) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -2578,8 +2571,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -2600,7 +2593,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2637,10 +2630,10 @@ var onceMap = function(map, name, callback, offer) {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -2658,13 +2651,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -2687,39 +2680,39 @@ options.success = function(resp) {
   });
 
   // Default JSON-request options.
-  var params = {type: type, dataType: &#x27;json&#x27;};
+  var params = {type: type, dataType: 'json'};
 
   // Ensure that we have a URL.
   if (!options.url) {
-    params.url = _.result(model, &#x27;url&#x27;) || urlError();
+    params.url = _.result(model, 'url') || urlError();
   }
 
   // Ensure that we have the appropriate request data.
-  if (options.data == null &#x26;&#x26; model &#x26;&#x26; (method === &#x27;create&#x27; || method === &#x27;update&#x27; || method === &#x27;patch&#x27;)) {
-    params.contentType = &#x27;application/json&#x27;;
+  if (options.data == null &amp;&amp; model &amp;&amp; (method === 'create' || method === 'update' || method === 'patch')) {
+    params.contentType = 'application/json';
     params.data = JSON.stringify(options.attrs || model.toJSON(options));
   }
 
   // For older servers, emulate JSON by encoding the request into an HTML-form.
   if (options.emulateJSON) {
-    params.contentType = &#x27;application/x-www-form-urlencoded&#x27;;
+    params.contentType = 'application/x-www-form-urlencoded';
     params.data = params.data ? {model: params.data} : {};
   }
 
   // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
   // And an `X-HTTP-Method-Override` header.
-  if (options.emulateHTTP &#x26;&#x26; (type === &#x27;PUT&#x27; || type === &#x27;DELETE&#x27; || type === &#x27;PATCH&#x27;)) {
-    params.type = &#x27;POST&#x27;;
+  if (options.emulateHTTP &amp;&amp; (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
+    params.type = 'POST';
     if (options.emulateJSON) params.data._method = type;
     var beforeSend = options.beforeSend;
     options.beforeSend = function(xhr) {
-      xhr.setRequestHeader(&#x27;X-HTTP-Method-Override&#x27;, type);
+      xhr.setRequestHeader('X-HTTP-Method-Override', type);
       if (beforeSend) return beforeSend.apply(this, arguments);
     };
   }
 
-  // Don&#x27;t process data on a non-GET request.
-  if (params.type !== &#x27;GET&#x27; &#x26;&#x26; !options.emulateJSON) {
+  // Don't process data on a non-GET request.
+  if (params.type !== 'GET' &amp;&amp; !options.emulateJSON) {
     params.processData = false;
   }
 
@@ -2733,7 +2726,7 @@ options.success = function(resp) {
 
   // Make the request, allowing the user to override any Ajax options.
   var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
-  model.trigger(&#x27;request&#x27;, model, xhr, options);
+  model.trigger('request', model, xhr, options);
   return xhr;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2741,17 +2734,17 @@ options.success = function(resp) {
     var serverAttrs = options.parse ? model.parse(resp, options) : resp;
     if (!model.set(serverAttrs, options)) return false;
     if (success) success.call(options.context, model, resp, options);
-    model.trigger(&#x27;sync&#x27;, model, resp, options);
+    model.trigger('sync', model, resp, options);
   };
   wrapError(this, options);
-  return this.<span class="apidocCodeKeywordSpan">sync</span>(&#x27;read&#x27;, this, options);
+  return this.<span class="apidocCodeKeywordSpan">sync</span>('read', this, options);
 },
 
 // Set a hash of model attributes, and sync the model to the server.
-// If the server returns an attributes hash that differs, the model&#x27;s
+// If the server returns an attributes hash that differs, the model's
 // state will be `set` again.
 save: function(key, val, options) {
-  // Handle both `&#x22;key&#x22;, value` and `{key: value}` -style arguments.
+  // Handle both `"key", value` and `{key: value}` -style arguments.
 ...</pre></li>
     </ul>
 
@@ -2769,7 +2762,7 @@ save: function(key, val, options) {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -2781,8 +2774,8 @@ save: function(key, val, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -2868,9 +2861,9 @@ var eventSplitter = /\s+/;
   var child;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // (the "constructor" property in your `extend` definition), or defaulted
   // by us to simply call the parent constructor.
-  if (protoProps &#x26;&#x26; _.has(protoProps, &#x27;constructor&#x27;)) {
+  if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
     child = protoProps.constructor;
   } else {
     child = function(){ return parent.apply(this, arguments); };
@@ -2880,11 +2873,11 @@ var eventSplitter = /\s+/;
   _.extend(child, parent, staticProps);
 
   // Set the prototype chain to inherit from `parent`, without calling
-  // `parent`&#x27;s constructor function and add the prototype properties.
+  // `parent`'s constructor function and add the prototype properties.
   child.prototype = _.create(parent.prototype, protoProps);
   child.prototype.constructor = child;
 
-  // Set a convenience property in case the parent&#x27;s prototype is needed
+  // Set a convenience property in case the parent's prototype is needed
   // later.
   child.__super__ = parent.prototype;
 
@@ -2899,8 +2892,8 @@ var eventSplitter = /\s+/;
 //
 //     var object = {};
 //     _.<span class="apidocCodeKeywordSpan">extend</span>(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -2927,7 +2920,7 @@ var eventSplitter = /\s+/;
   this._byId[model.cid] = model;
   var id = this.modelId(model.attributes);
   if (id != null) this._byId[id] = model;
-  model.on(&#x27;all&#x27;, this._onModelEvent, this);
+  model.on('all', this._onModelEvent, this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     models[i] = existing;
@@ -2965,10 +2958,10 @@ var eventSplitter = /\s+/;
   });
 };
 
-// Support `collection.sortBy(&#x27;attr&#x27;)` and `collection.findWhere({id: 1})`.
+// Support `collection.sortBy('attr')` and `collection.findWhere({id: 1})`.
 var cb = function(iteratee, instance) {
   if (_.isFunction(iteratee)) return iteratee;
-  if (_.isObject(iteratee) &#x26;&#x26; !instance.<span class="apidocCodeKeywordSpan">_isModel</span>(iteratee)) return modelMatcher
+  if (_.isObject(iteratee) &amp;&amp; !instance.<span class="apidocCodeKeywordSpan">_isModel</span>(iteratee)) return modelMatcher
 (iteratee);
   if (_.isString(iteratee)) return function(model) { return model.get(iteratee); };
   return iteratee;
@@ -2991,9 +2984,9 @@ var modelMatcher = function(attrs) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_onModelEvent = function (event, model, collection, options) {
   if (model) {
-    if ((event === &#x27;add&#x27; || event === &#x27;remove&#x27;) &#x26;&#x26; collection !== this) return;
-    if (event === &#x27;destroy&#x27;) this.remove(model, options);
-    if (event === &#x27;change&#x27;) {
+    if ((event === 'add' || event === 'remove') &amp;&amp; collection !== this) return;
+    if (event === 'destroy') this.remove(model, options);
+    if (event === 'change') {
       var prevId = this.modelId(model.previousAttributes());
       var id = this.modelId(model.attributes);
       if (prevId !== id) {
@@ -3025,7 +3018,7 @@ var modelMatcher = function(attrs) {
   options.collection = this;
   var model = new this.model(attrs, options);
   if (!model.validationError) return model;
-  this.trigger(&#x27;invalid&#x27;, this, model.validationError, options);
+  this.trigger('invalid', this, model.validationError, options);
   return false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -3058,7 +3051,7 @@ var modelMatcher = function(attrs) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_removeModels = function (models, options) {
   var removed = [];
-  for (var i = 0; i &#x3c; models.length; i++) {
+  for (var i = 0; i &lt; models.length; i++) {
     var model = this.get(models[i]);
     if (!model) continue;
 
@@ -3066,7 +3059,7 @@ var modelMatcher = function(attrs) {
     this.models.splice(index, 1);
     this.length--;
 
-    // Remove references before triggering &#x27;remove&#x27; event to prevent an
+    // Remove references before triggering 'remove' event to prevent an
     // infinite loop. #3693
     delete this._byId[model.cid];
     var id = this.modelId(model.attributes);
@@ -3074,7 +3067,7 @@ var modelMatcher = function(attrs) {
 
     if (!options.silent) {
       options.index = index;
-      model.trigger(&#x27;remove&#x27;, model, this, options);
+      model.trigger('remove', model, this, options);
     }
 
     removed.push(model);
@@ -3091,9 +3084,9 @@ remove: function(models, options) {
   var singular = !_.isArray(models);
   models = singular ? [models] : models.slice();
   var removed = this.<span class="apidocCodeKeywordSpan">_removeModels</span>(models, options);
-  if (!options.silent &#x26;&#x26; removed.length) {
+  if (!options.silent &amp;&amp; removed.length) {
     options.changes = {added: [], merged: [], removed: removed};
-    this.trigger(&#x27;update&#x27;, this, options);
+    this.trigger('update', this, options);
   }
   return singular ? removed[0] : removed;
 },
@@ -3114,7 +3107,7 @@ remove: function(models, options) {
   var id = this.modelId(model.attributes);
   if (id != null) delete this._byId[id];
   if (this === model.collection) delete model.collection;
-  model.off(&#x27;all&#x27;, this._onModelEvent, this);
+  model.off('all', this._onModelEvent, this);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // When you have more items than you want to add or remove individually,
@@ -3123,13 +3116,13 @@ remove: function(models, options) {
 // Useful for bulk operations and optimizations.
 reset: function(models, options) {
   options = options ? _.clone(options) : {};
-  for (var i = 0; i &#x3c; this.models.length; i++) {
+  for (var i = 0; i &lt; this.models.length; i++) {
     this.<span class="apidocCodeKeywordSpan">_removeReference</span>(this.models[i], options);
   }
   options.previousModels = this.models;
   this._reset();
   models = this.add(models, _.extend({silent: true}, options));
-  if (!options.silent) this.trigger(&#x27;reset&#x27;, this, options);
+  if (!options.silent) this.trigger('reset', this, options);
   return models;
 },
 ...</pre></li>
@@ -3152,7 +3145,7 @@ reset: function(models, options) {
     <li>example usage<pre class="apidocCodePre">...
 // Create a new **Collection**, perhaps to contain a specific type of `model`.
 // If a `comparator` is specified, the Collection will maintain
-// its models in sort order, as they&#x27;re added and removed.
+// its models in sort order, as they're added and removed.
 var Collection = Backbone.Collection = function(models, options) {
   options || (options = {});
   if (options.model) this.model = options.model;
@@ -3183,13 +3176,13 @@ var addOptions = {add: true, remove: false};
     <li>example usage<pre class="apidocCodePre">...
 reset: function(models, options) {
   options = options ? _.clone(options) : {};
-  for (var i = 0; i &#x3c; this.models.length; i++) {
+  for (var i = 0; i &lt; this.models.length; i++) {
     this._removeReference(this.models[i], options);
   }
   options.previousModels = this.models;
   this._reset();
   models = this.<span class="apidocCodeKeywordSpan">add</span>(models, _.extend({silent: true}, options));
-  if (!options.silent) this.trigger(&#x27;reset&#x27;, this, options);
+  if (!options.silent) this.trigger('reset', this, options);
   return models;
 },
 
@@ -3239,7 +3232,7 @@ push: function(model, options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">at = function (index) {
-  if (index &#x3c; 0) index += this.length;
+  if (index &lt; 0) index += this.length;
   return this.models[index];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -3282,7 +3275,7 @@ unshift: function(model, options) {
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -3328,7 +3321,7 @@ Events.listenToOnce = function(obj, name, callback) {
 // initialization logic.
 initialize: function(){},
 
-// Return a copy of the model&#x27;s `attributes` object.
+// Return a copy of the model's `attributes` object.
 toJSON: function(options) {
   return _.<span class="apidocCodeKeywordSpan">clone</span>(this.attributes);
 },
@@ -3417,11 +3410,11 @@ sync: function() {
 _.extend(child, parent, staticProps);
 
 // Set the prototype chain to inherit from `parent`, without calling
-// `parent`&#x27;s constructor function and add the prototype properties.
+// `parent`'s constructor function and add the prototype properties.
 child.prototype = _.<span class="apidocCodeKeywordSpan">create</span>(parent.prototype, protoProps);
 child.prototype.constructor = child;
 
-// Set a convenience property in case the parent&#x27;s prototype is needed
+// Set a convenience property in case the parent's prototype is needed
 // later.
 child.__super__ = parent.prototype;
 
@@ -3492,13 +3485,13 @@ return child;
 // form param named `model`.
 Backbone.emulateJSON = false;
 
-// Proxy Backbone class methods to Underscore functions, wrapping the model&#x27;s
-// `attributes` object or collection&#x27;s `models` array behind the scenes.
+// Proxy Backbone class methods to Underscore functions, wrapping the model's
+// `attributes` object or collection's `models` array behind the scenes.
 //
-// collection.filter(function(model) { return model.get(&#x27;age&#x27;) &#x3e; 10 });
+// collection.filter(function(model) { return model.get('age') &gt; 10 });
 // collection.<span class="apidocCodeKeywordSpan">each</span>(this.addView);
 //
-// `Function#apply` can be slow so we use the method&#x27;s arg count, if we know it.
+// `Function#apply` can be slow so we use the method's arg count, if we know it.
 var addMethod = function(length, method, attribute) {
   switch (length) {
     case 1: return function() {
@@ -3536,13 +3529,13 @@ var addMethod = function(length, method, attribute) {
   var success = options.success;
   var collection = this;
   options.success = function(resp) {
-    var method = options.reset ? &#x27;reset&#x27; : &#x27;set&#x27;;
+    var method = options.reset ? 'reset' : 'set';
     collection[method](resp, options);
     if (success) success.call(options.context, collection, resp, options);
-    collection.trigger(&#x27;sync&#x27;, collection, resp, options);
+    collection.trigger('sync', collection, resp, options);
   };
   wrapError(this, options);
-  return this.sync(&#x27;read&#x27;, this, options);
+  return this.sync('read', this, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3564,13 +3557,13 @@ var addMethod = function(length, method, attribute) {
 // form param named `model`.
 Backbone.emulateJSON = false;
 
-// Proxy Backbone class methods to Underscore functions, wrapping the model&#x27;s
-// `attributes` object or collection&#x27;s `models` array behind the scenes.
+// Proxy Backbone class methods to Underscore functions, wrapping the model's
+// `attributes` object or collection's `models` array behind the scenes.
 //
-// collection.<span class="apidocCodeKeywordSpan">filter</span>(function(model) { return model.get(&#x27;age&#x27;) &#x3e; 10 });
+// collection.<span class="apidocCodeKeywordSpan">filter</span>(function(model) { return model.get('age') &gt; 10 });
 // collection.each(this.addView);
 //
-// `Function#apply` can be slow so we use the method&#x27;s arg count, if we know it.
+// `Function#apply` can be slow so we use the method's arg count, if we know it.
 var addMethod = function(length, method, attribute) {
   switch (length) {
     case 1: return function() {
@@ -3592,8 +3585,8 @@ var addMethod = function(length, method, attribute) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-// The default `tagName` of a View&#x27;s element is `&#x22;div&#x22;`.
-tagName: &#x27;div&#x27;,
+// The default `tagName` of a View's element is `"div"`.
+tagName: 'div',
 
 // jQuery delegate for element lookup, scoped to DOM elements within the
 // current view. This should be preferred to global lookups where possible.
@@ -3659,10 +3652,10 @@ var addUnderscoreMethods = function(Class, methods, attribute) {
   });
 };
 
-// Support `collection.sortBy(&#x27;attr&#x27;)` and `collection.<span class="apidocCodeKeywordSpan">findWhere</span>({id: 1})`.
+// Support `collection.sortBy('attr')` and `collection.<span class="apidocCodeKeywordSpan">findWhere</span>({id: 1})`.
 var cb = function(iteratee, instance) {
   if (_.isFunction(iteratee)) return iteratee;
-  if (_.isObject(iteratee) &#x26;&#x26; !instance._isModel(iteratee)) return modelMatcher(iteratee);
+  if (_.isObject(iteratee) &amp;&amp; !instance._isModel(iteratee)) return modelMatcher(iteratee);
   if (_.isString(iteratee)) return function(model) { return model.get(iteratee); };
   return iteratee;
 };
@@ -3747,20 +3740,20 @@ var modelMatcher = function(attrs) {
   if (obj == null) return void 0;
   return this._byId[obj] ||
     this._byId[this.modelId(obj.attributes || obj)] ||
-    obj.cid &#x26;&#x26; this._byId[obj.cid];
+    obj.cid &amp;&amp; this._byId[obj.cid];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // `application/x-www-form-urlencoded` instead and will send the model in a
 // form param named `model`.
 Backbone.emulateJSON = false;
 
-// Proxy Backbone class methods to Underscore functions, wrapping the model&#x27;s
-// `attributes` object or collection&#x27;s `models` array behind the scenes.
+// Proxy Backbone class methods to Underscore functions, wrapping the model's
+// `attributes` object or collection's `models` array behind the scenes.
 //
-// collection.filter(function(model) { return model.<span class="apidocCodeKeywordSpan">get</span>(&#x27;age&#x27;) &#x3e; 10 });
+// collection.filter(function(model) { return model.<span class="apidocCodeKeywordSpan">get</span>('age') &gt; 10 });
 // collection.each(this.addView);
 //
-// `Function#apply` can be slow so we use the method&#x27;s arg count, if we know it.
+// `Function#apply` can be slow so we use the method's arg count, if we know it.
 var addMethod = function(length, method, attribute) {
   switch (length) {
     case 1: return function() {
@@ -3799,7 +3792,7 @@ var addMethod = function(length, method, attribute) {
   return this.set(attrs, _.extend({}, options, {unset: true}));
 },
 
-// Determine if the model has changed since the last `&#x22;change&#x22;` event.
+// Determine if the model has changed since the last `"change"` event.
 // If you specify an attribute name, determine if that attribute has changed.
 hasChanged: function(attr) {
   if (attr == null) return !_.isEmpty(this.changed);
@@ -3890,7 +3883,7 @@ hasChanged: function(attr) {
     // Internal method called by both remove and set.
     _removeModels: function(models, options) {
       var removed = [];
-      for (var i = 0; i &#x3c; models.length; i++) {
+      for (var i = 0; i &lt; models.length; i++) {
 var model = this.get(models[i]);
 if (!model) continue;
 
@@ -3898,7 +3891,7 @@ var index = this.<span class="apidocCodeKeywordSpan">indexOf</span>(model);
 this.models.splice(index, 1);
 this.length--;
 
-// Remove references before triggering &#x27;remove&#x27; event to prevent an
+// Remove references before triggering 'remove' event to prevent an
 // infinite loop. #3693
 delete this._byId[model.cid];
 var id = this.modelId(model.attributes);
@@ -3984,7 +3977,7 @@ var id = this.modelId(model.attributes);
   return this.set(attrs, _.extend({}, options, {unset: true}));
 },
 
-// Determine if the model has changed since the last `&#x22;change&#x22;` event.
+// Determine if the model has changed since the last `"change"` event.
 // If you specify an attribute name, determine if that attribute has changed.
 hasChanged: function(attr) {
   if (attr == null) return !_.<span class="apidocCodeKeywordSpan">isEmpty</span>(this.changed);
@@ -4039,14 +4032,14 @@ hasChanged: function(attr) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -4108,7 +4101,7 @@ var onceMap = function(map, name, callback, offer) {
 initialize: function(){},
 
 // The JSON representation of a Collection is an array of the
-// models&#x27; attributes.
+// models' attributes.
 toJSON: function(options) {
   return this.<span class="apidocCodeKeywordSpan">map</span>(function(model) { return model.toJSON(options); });
 },
@@ -4135,14 +4128,14 @@ sync: function() {
     <li>example usage<pre class="apidocCodePre">...
 // Trigger one or many events, firing all bound callbacks. Callbacks are
 // passed the same arguments as `trigger` is, apart from the event name
-// (unless you&#x27;re listening on `&#x22;all&#x22;`, which will cause your callback to
+// (unless you're listening on `"all"`, which will cause your callback to
 // receive the true name of the event as the first argument).
 Events.trigger = function(name) {
   if (!this._events) return this;
 
   var length = Math.<span class="apidocCodeKeywordSpan">max</span>(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -4174,9 +4167,9 @@ var splice = function(array, insert, at) {
   var tail = Array(array.length - at);
   var length = insert.length;
   var i;
-  for (i = 0; i &#x3c; tail.length; i++) tail[i] = array[i + at];
-  for (i = 0; i &#x3c; length; i++) array[i + at] = insert[i];
-  for (i = 0; i &#x3c; tail.length; i++) array[i + length + at] = tail[i];
+  for (i = 0; i &lt; tail.length; i++) tail[i] = array[i + at];
+  for (i = 0; i &lt; length; i++) array[i + at] = insert[i];
+  for (i = 0; i &lt; tail.length; i++) array[i + length + at] = tail[i];
 };
 ...</pre></li>
     </ul>
@@ -4197,7 +4190,7 @@ var splice = function(array, insert, at) {
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.parse(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.set(attrs, options);
   this.changed = {};
@@ -4213,7 +4206,7 @@ _prepareModel: function(attrs, options) {
   options.collection = this;
   var model = new this.<span class="apidocCodeKeywordSpan">model</span>(attrs, options);
   if (!model.validationError) return model;
-  this.trigger(&#x27;invalid&#x27;, this, model.validationError, options);
+  this.trigger('invalid', this, model.validationError, options);
   return false;
 },
 
@@ -4232,7 +4225,7 @@ _removeModels: function(models, options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">modelId = function (attrs) {
-  return attrs[this.model.prototype.idAttribute || &#x27;id&#x27;];
+  return attrs[this.model.prototype.idAttribute || 'id'];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 },
@@ -4243,7 +4236,7 @@ get: function(obj) {
   if (obj == null) return void 0;
   return this._byId[obj] ||
     this._byId[this.<span class="apidocCodeKeywordSpan">modelId</span>(obj.attributes || obj)] ||
-    obj.cid &#x26;&#x26; this._byId[obj.cid];
+    obj.cid &amp;&amp; this._byId[obj.cid];
 },
 
 // Returns `true` if the model is in the collection.
@@ -4271,10 +4264,10 @@ has: function(obj) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -4309,8 +4302,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -4331,7 +4324,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -4374,7 +4367,7 @@ var Model = Backbone.Model = function(attributes, options) {
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.<span class="apidocCodeKeywordSpan">parse</span>(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.set(attrs, options);
   this.changed = {};
@@ -4408,7 +4401,7 @@ var Model = Backbone.Model = function(attributes, options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">pluck = function (attr) {
-  return this.map(attr + &#x27;&#x27;);
+  return this.map(attr + '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4432,7 +4425,7 @@ var Model = Backbone.Model = function(attributes, options) {
 // routes can be defined at the bottom of the route map.
 _bindRoutes: function() {
   if (!this.routes) return;
-  this.routes = _.result(this, &#x27;routes&#x27;);
+  this.routes = _.result(this, 'routes');
   var route, routes = _.keys(this.routes);
   while ((route = routes.<span class="apidocCodeKeywordSpan">pop</span>()) != null) {
     this.route(route, this.routes[route]);
@@ -4540,9 +4533,9 @@ var onApi = function(events, name, callback, options) {
   var singular = !_.isArray(models);
   models = singular ? [models] : models.slice();
   var removed = this._removeModels(models, options);
-  if (!options.silent &#x26;&#x26; removed.length) {
+  if (!options.silent &amp;&amp; removed.length) {
     options.changes = {added: [], merged: [], removed: removed};
-    this.trigger(&#x27;update&#x27;, this, options);
+    this.trigger('update', this, options);
   }
   return singular ? removed[0] : removed;
 }</pre></li>
@@ -4575,17 +4568,17 @@ unshift: function(model, options) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">reset = function (models, options) {
   options = options ? _.clone(options) : {};
-  for (var i = 0; i &#x3c; this.models.length; i++) {
+  for (var i = 0; i &lt; this.models.length; i++) {
     this._removeReference(this.models[i], options);
   }
   options.previousModels = this.models;
   this._reset();
   models = this.add(models, _.extend({silent: true}, options));
-  if (!options.silent) this.trigger(&#x27;reset&#x27;, this, options);
+  if (!options.silent) this.trigger('reset', this, options);
   return models;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-// its models in sort order, as they&#x27;re added and removed.
+// its models in sort order, as they're added and removed.
 var Collection = Backbone.Collection = function(models, options) {
   options || (options = {});
   if (options.model) this.model = options.model;
@@ -4661,7 +4654,7 @@ var addOptions = {add: true, remove: false};
   if (models == null) return;
 
   options = _.extend({}, setOptions, options);
-  if (options.parse &#x26;&#x26; !this._isModel(models)) {
+  if (options.parse &amp;&amp; !this._isModel(models)) {
     models = this.parse(models, options) || [];
   }
 
@@ -4670,8 +4663,8 @@ var addOptions = {add: true, remove: false};
 
   var at = options.at;
   if (at != null) at = +at;
-  if (at &#x3e; this.length) at = this.length;
-  if (at &#x3c; 0) at += this.length + 1;
+  if (at &gt; this.length) at = this.length;
+  if (at &lt; 0) at += this.length + 1;
 
   var set = [];
   var toAdd = [];
@@ -4684,25 +4677,25 @@ var addOptions = {add: true, remove: false};
   var remove = options.remove;
 
   var sort = false;
-  var sortable = this.comparator &#x26;&#x26; at == null &#x26;&#x26; options.sort !== false;
+  var sortable = this.comparator &amp;&amp; at == null &amp;&amp; options.sort !== false;
   var sortAttr = _.isString(this.comparator) ? this.comparator : null;
 
   // Turn bare objects into model references, and prevent invalid models
   // from being added.
   var model, i;
-  for (i = 0; i &#x3c; models.length; i++) {
+  for (i = 0; i &lt; models.length; i++) {
     model = models[i];
 
     // If a duplicate is found, prevent it from being added and
     // optionally merge it into the existing model.
     var existing = this.get(model);
     if (existing) {
-      if (merge &#x26;&#x26; model !== existing) {
+      if (merge &amp;&amp; model !== existing) {
         var attrs = this._isModel(model) ? model.attributes : model;
         if (options.parse) attrs = existing.parse(attrs, options);
         existing.set(attrs, options);
         toMerge.push(existing);
-        if (sortable &#x26;&#x26; !sort) sort = existing.hasChanged(sortAttr);
+        if (sortable &amp;&amp; !sort) sort = existing.hasChanged(sortAttr);
       }
       if (!modelMap[existing.cid]) {
         modelMap[existing.cid] = true;
@@ -4724,7 +4717,7 @@ var addOptions = {add: true, remove: false};
 
   // Remove stale models.
   if (remove) {
-    for (i = 0; i &#x3c; this.length; i++) {
+    for (i = 0; i &lt; this.length; i++) {
       model = this.models[i];
       if (!modelMap[model.cid]) toRemove.push(model);
     }
@@ -4733,8 +4726,8 @@ var addOptions = {add: true, remove: false};
 
   // See if sorting is needed, update `length` and splice in new models.
   var orderChanged = false;
-  var replace = !sortable &#x26;&#x26; add &#x26;&#x26; remove;
-  if (set.length &#x26;&#x26; replace) {
+  var replace = !sortable &amp;&amp; add &amp;&amp; remove;
+  if (set.length &amp;&amp; replace) {
     orderChanged = this.length !== set.length || _.some(this.models, function(m, index) {
       return m !== set[index];
     });
@@ -4750,21 +4743,21 @@ var addOptions = {add: true, remove: false};
   // Silently sort the collection if appropriate.
   if (sort) this.sort({silent: true});
 
-  // Unless silenced, it&#x27;s time to fire all appropriate add/sort/update events.
+  // Unless silenced, it's time to fire all appropriate add/sort/update events.
   if (!options.silent) {
-    for (i = 0; i &#x3c; toAdd.length; i++) {
+    for (i = 0; i &lt; toAdd.length; i++) {
       if (at != null) options.index = at + i;
       model = toAdd[i];
-      model.trigger(&#x27;add&#x27;, model, this, options);
+      model.trigger('add', model, this, options);
     }
-    if (sort || orderChanged) this.trigger(&#x27;sort&#x27;, this, options);
+    if (sort || orderChanged) this.trigger('sort', this, options);
     if (toAdd.length || toRemove.length || toMerge.length) {
       options.changes = {
         added: toAdd,
         removed: toRemove,
         merged: toMerge
       };
-      this.trigger(&#x27;update&#x27;, this, options);
+      this.trigger('update', this, options);
     }
   }
 
@@ -4777,7 +4770,7 @@ var addOptions = {add: true, remove: false};
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.parse(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.<span class="apidocCodeKeywordSpan">set</span>(attrs, options);
   this.changed = {};
@@ -4844,7 +4837,7 @@ _.extend(Model.prototype, Events, {
 },
 
 // Get the previous value of an attribute, recorded at the time the last
-// `&#x22;change&#x22;` event was fired.
+// `"change"` event was fired.
 previous: function(attr) {
   if (attr == null || !this._previousAttributes) return null;
   return this._previousAttributes[attr];
@@ -4871,7 +4864,7 @@ var triggerApi = function(objEvents, name, callback, args) {
   if (objEvents) {
     var events = objEvents[name];
     var allEvents = objEvents.all;
-    if (events &#x26;&#x26; allEvents) allEvents = allEvents.<span class="apidocCodeKeywordSpan">slice</span>();
+    if (events &amp;&amp; allEvents) allEvents = allEvents.<span class="apidocCodeKeywordSpan">slice</span>();
     if (events) triggerEvents(events, args);
     if (allEvents) triggerEvents(allEvents, [name].concat(args));
   }
@@ -4900,8 +4893,8 @@ var triggerApi = function(objEvents, name, callback, args) {
 
 // See if sorting is needed, update `length` and splice in new models.
 var orderChanged = false;
-var replace = !sortable &#x26;&#x26; add &#x26;&#x26; remove;
-if (set.length &#x26;&#x26; replace) {
+var replace = !sortable &amp;&amp; add &amp;&amp; remove;
+if (set.length &amp;&amp; replace) {
   orderChanged = this.length !== set.length || _.<span class="apidocCodeKeywordSpan">some</span>(this.models, function(m, index) {
     return m !== set[index];
   });
@@ -4924,7 +4917,7 @@ if (set.length &#x26;&#x26; replace) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sort = function (options) {
   var comparator = this.comparator;
-  if (!comparator) throw new Error(&#x27;Cannot sort a set without a comparator&#x27;);
+  if (!comparator) throw new Error('Cannot sort a set without a comparator');
   options || (options = {});
 
   var length = comparator.length;
@@ -4936,7 +4929,7 @@ if (set.length &#x26;&#x26; replace) {
   } else {
     this.models.sort(comparator);
   }
-  if (!options.silent) this.trigger(&#x27;sort&#x27;, this, options);
+  if (!options.silent) this.trigger('sort', this, options);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -4949,12 +4942,12 @@ if (set.length &#x26;&#x26; replace) {
 // Silently sort the collection if appropriate.
 if (sort) this.<span class="apidocCodeKeywordSpan">sort</span>({silent: true});
 
-// Unless silenced, it&#x27;s time to fire all appropriate add/sort/update events.
+// Unless silenced, it's time to fire all appropriate add/sort/update events.
 if (!options.silent) {
-  for (i = 0; i &#x3c; toAdd.length; i++) {
+  for (i = 0; i &lt; toAdd.length; i++) {
     if (at != null) options.index = at + i;
     model = toAdd[i];
-    model.trigger(&#x27;add&#x27;, model, this, options);
+    model.trigger('add', model, this, options);
 ...</pre></li>
     </ul>
 
@@ -4978,10 +4971,10 @@ var addUnderscoreMethods = function(Class, methods, attribute) {
   });
 };
 
-// Support `collection.<span class="apidocCodeKeywordSpan">sortBy</span>(&#x27;attr&#x27;)` and `collection.findWhere({id: 1})`.
+// Support `collection.<span class="apidocCodeKeywordSpan">sortBy</span>('attr')` and `collection.findWhere({id: 1})`.
 var cb = function(iteratee, instance) {
   if (_.isFunction(iteratee)) return iteratee;
-  if (_.isObject(iteratee) &#x26;&#x26; !instance._isModel(iteratee)) return modelMatcher(iteratee);
+  if (_.isObject(iteratee) &amp;&amp; !instance._isModel(iteratee)) return modelMatcher(iteratee);
   if (_.isString(iteratee)) return function(model) { return model.get(iteratee); };
   return iteratee;
 };
@@ -5004,10 +4997,10 @@ var modelMatcher = function(attrs) {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -5025,13 +5018,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -5052,17 +5045,17 @@ options.success = function(resp) {
     var serverAttrs = options.parse ? model.parse(resp, options) : resp;
     if (!model.set(serverAttrs, options)) return false;
     if (success) success.call(options.context, model, resp, options);
-    model.trigger(&#x27;sync&#x27;, model, resp, options);
+    model.trigger('sync', model, resp, options);
   };
   wrapError(this, options);
-  return this.<span class="apidocCodeKeywordSpan">sync</span>(&#x27;read&#x27;, this, options);
+  return this.<span class="apidocCodeKeywordSpan">sync</span>('read', this, options);
 },
 
 // Set a hash of model attributes, and sync the model to the server.
-// If the server returns an attributes hash that differs, the model&#x27;s
+// If the server returns an attributes hash that differs, the model's
 // state will be `set` again.
 save: function(key, val, options) {
-  // Handle both `&#x22;key&#x22;, value` and `{key: value}` -style arguments.
+  // Handle both `"key", value` and `{key: value}` -style arguments.
 ...</pre></li>
     </ul>
 
@@ -5129,7 +5122,7 @@ save: function(key, val, options) {
 initialize: function(){},
 
 // The JSON representation of a Collection is an array of the
-// models&#x27; attributes.
+// models' attributes.
 toJSON: function(options) {
   return this.map(function(model) { return model.<span class="apidocCodeKeywordSpan">toJSON</span>(options); });
 },
@@ -5155,7 +5148,7 @@ sync: function() {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -5167,8 +5160,8 @@ sync: function() {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -5240,11 +5233,11 @@ var addUnderscoreMethods = function(Class, methods, attribute) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">where = function (attrs, first) {
-  return this[first ? &#x27;find&#x27; : &#x27;filter&#x27;](attrs);
+  return this[first ? 'find' : 'filter'](attrs);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 where: function(attrs, first) {
-  return this[first ? &#x27;find&#x27; : &#x27;filter&#x27;](attrs);
+  return this[first ? 'find' : 'filter'](attrs);
 },
 
 // Return the first model with matching attributes. Useful for simple cases
@@ -5253,7 +5246,7 @@ findWhere: function(attrs) {
   return this.<span class="apidocCodeKeywordSpan">where</span>(attrs, true);
 },
 
-// Force the collection to re-sort itself. You don&#x27;t need to call this under
+// Force the collection to re-sort itself. You don't need to call this under
 // normal circumstances, as the set will maintain sort order as each item
 // is added.
 sort: function(options) {
@@ -5304,7 +5297,7 @@ sort: function(options) {
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -5325,14 +5318,14 @@ Events.listenToOnce = function(obj, name, callback) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -5394,10 +5387,10 @@ var onceMap = function(map, name, callback, offer) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -5432,8 +5425,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -5454,7 +5447,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -5491,10 +5484,10 @@ var onceMap = function(map, name, callback, offer) {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -5512,13 +5505,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -5536,7 +5529,7 @@ options.success = function(resp) {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -5548,8 +5541,8 @@ options.success = function(resp) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -5601,7 +5594,7 @@ var eventSplitter = /\s+/;
   this.checkUrl = _.bind(this.checkUrl, this);
 
   // Ensure that `History` can be used outside of the browser.
-  if (typeof window !== &#x27;undefined&#x27;) {
+  if (typeof window !== 'undefined') {
     this.location = window.location;
     this.history = window.history;
   }
@@ -5623,9 +5616,9 @@ var eventSplitter = /\s+/;
   var child;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // (the "constructor" property in your `extend` definition), or defaulted
   // by us to simply call the parent constructor.
-  if (protoProps &#x26;&#x26; _.has(protoProps, &#x27;constructor&#x27;)) {
+  if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
     child = protoProps.constructor;
   } else {
     child = function(){ return parent.apply(this, arguments); };
@@ -5635,11 +5628,11 @@ var eventSplitter = /\s+/;
   _.extend(child, parent, staticProps);
 
   // Set the prototype chain to inherit from `parent`, without calling
-  // `parent`&#x27;s constructor function and add the prototype properties.
+  // `parent`'s constructor function and add the prototype properties.
   child.prototype = _.create(parent.prototype, protoProps);
   child.prototype.constructor = child;
 
-  // Set a convenience property in case the parent&#x27;s prototype is needed
+  // Set a convenience property in case the parent's prototype is needed
   // later.
   child.__super__ = parent.prototype;
 
@@ -5654,8 +5647,8 @@ var eventSplitter = /\s+/;
 //
 //     var object = {};
 //     _.<span class="apidocCodeKeywordSpan">extend</span>(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -5680,27 +5673,27 @@ var eventSplitter = /\s+/;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_updateHash = function (location, fragment, replace) {
   if (replace) {
-    var href = location.href.replace(/(javascript:|#).*$/, &#x27;&#x27;);
-    location.replace(href + &#x27;#&#x27; + fragment);
+    var href = location.href.replace(/(javascript:|#).*$/, '');
+    location.replace(href + '#' + fragment);
   } else {
     // Some browsers require that `hash` contains a leading #.
-    location.hash = &#x27;#&#x27; + fragment;
+    location.hash = '#' + fragment;
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       // If pushState is available, we use it to set the fragment as a real URL.
       if (this._usePushState) {
-        this.history[options.replace ? &#x27;replaceState&#x27; : &#x27;pushState&#x27;]({}, document.title, url);
+        this.history[options.replace ? 'replaceState' : 'pushState']({}, document.title, url);
 
-      // If hash changes haven&#x27;t been explicitly disabled, update the hash
+      // If hash changes haven't been explicitly disabled, update the hash
       // fragment to store history.
       } else if (this._wantsHashChange) {
         this.<span class="apidocCodeKeywordSpan">_updateHash</span>(this.location, fragment, options.replace);
-        if (this.iframe &#x26;&#x26; fragment !== this.getHash(this.iframe.contentWindow)) {
+        if (this.iframe &amp;&amp; fragment !== this.getHash(this.iframe.contentWindow)) {
 var iWindow = this.iframe.contentWindow;
 
 // Opening and closing the iframe tricks IE7 and earlier to push a
-// history entry on hash-tag change.  When replace is true, we don&#x27;t
+// history entry on hash-tag change.  When replace is true, we don't
 // want this.
 if (!options.replace) {
 ...</pre></li>
@@ -5716,24 +5709,24 @@ if (!options.replace) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">atRoot = function () {
-  var path = this.location.pathname.replace(/[^\/]$/, &#x27;$&#x26;/&#x27;);
-  return path === this.root &#x26;&#x26; !this.getSearch();
+  var path = this.location.pathname.replace(/[^\/]$/, '$&amp;/');
+  return path === this.root &amp;&amp; !this.getSearch();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
       // Transition from hashChange to pushState or vice versa if both are
       // requested.
-      if (this._wantsHashChange &#x26;&#x26; this._wantsPushState) {
+      if (this._wantsHashChange &amp;&amp; this._wantsPushState) {
 
-// If we&#x27;ve started off with a route from a `pushState`-enabled
-// browser, but we&#x27;re currently in a browser that doesn&#x27;t support it...
-if (!this._hasPushState &#x26;&#x26; !this.<span class="apidocCodeKeywordSpan">atRoot</span>()) {
-  var rootPath = this.root.slice(0, -1) || &#x27;/&#x27;;
-  this.location.replace(rootPath + &#x27;#&#x27; + this.getPath());
+// If we've started off with a route from a `pushState`-enabled
+// browser, but we're currently in a browser that doesn't support it...
+if (!this._hasPushState &amp;&amp; !this.<span class="apidocCodeKeywordSpan">atRoot</span>()) {
+  var rootPath = this.root.slice(0, -1) || '/';
+  this.location.replace(rootPath + '#' + this.getPath());
   // Return immediately as browser will do redirect to new url
   return true;
 
-// Or if we&#x27;ve started out with a hash-based route, but we&#x27;re currently
+// Or if we've started out with a hash-based route, but we're currently
 // in a browser where it could be `pushState`-based instead...
 ...</pre></li>
     </ul>
@@ -5759,7 +5752,7 @@ if (!this._hasPushState &#x26;&#x26; !this.<span class="apidocCodeKeywordSpan">a
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -5781,9 +5774,9 @@ Events.listenToOnce = function(obj, name, callback) {
     <li>description and source-code<pre class="apidocCodePre">checkUrl = function (e) {
   var current = this.getFragment();
 
-  // If the user pressed the back button, the iframe&#x27;s hash will have
+  // If the user pressed the back button, the iframe's hash will have
   // changed and we should use that for comparison.
-  if (current === this.fragment &#x26;&#x26; this.iframe) {
+  if (current === this.fragment &amp;&amp; this.iframe) {
     current = this.getHash(this.iframe.contentWindow);
   }
 
@@ -5804,22 +5797,22 @@ Events.listenToOnce = function(obj, name, callback) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">decodeFragment = function (fragment) {
-  return decodeURI(fragment.replace(/%25/g, &#x27;%2525&#x27;));
+  return decodeURI(fragment.replace(/%25/g, '%2525'));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 atRoot: function() {
-  var path = this.location.pathname.replace(/[^\/]$/, &#x27;$&#x26;/&#x27;);
-  return path === this.root &#x26;&#x26; !this.getSearch();
+  var path = this.location.pathname.replace(/[^\/]$/, '$&amp;/');
+  return path === this.root &amp;&amp; !this.getSearch();
 },
 
 // Does the pathname match the root?
 matchRoot: function() {
   var path = this.<span class="apidocCodeKeywordSpan">decodeFragment</span>(this.location.pathname);
-  var rootPath = path.slice(0, this.root.length - 1) + &#x27;/&#x27;;
+  var rootPath = path.slice(0, this.root.length - 1) + '/';
   return rootPath === this.root;
 },
 
-// Unicode characters in `location.pathname` are percent encoded so they&#x27;re
+// Unicode characters in `location.pathname` are percent encoded so they're
 // decoded for comparison. `%25` should not be decoded since it may be part
 // of an encoded parameter.
 ...</pre></li>
@@ -5842,25 +5835,25 @@ matchRoot: function() {
       fragment = this.getHash();
     }
   }
-  return fragment.replace(routeStripper, &#x27;&#x27;);
+  return fragment.replace(routeStripper, '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 this.root             = this.options.root;
 this._wantsHashChange = this.options.hashChange !== false;
-this._hasHashChange   = &#x27;onhashchange&#x27; in window &#x26;&#x26; (document.documentMode === void 0 || document.documentMode
- &#x3e; 7);
-this._useHashChange   = this._wantsHashChange &#x26;&#x26; this._hasHashChange;
+this._hasHashChange   = 'onhashchange' in window &amp;&amp; (document.documentMode === void 0 || document.documentMode
+ &gt; 7);
+this._useHashChange   = this._wantsHashChange &amp;&amp; this._hasHashChange;
 this._wantsPushState  = !!this.options.pushState;
-this._hasPushState    = !!(this.history &#x26;&#x26; this.history.pushState);
-this._usePushState    = this._wantsPushState &#x26;&#x26; this._hasPushState;
+this._hasPushState    = !!(this.history &amp;&amp; this.history.pushState);
+this._usePushState    = this._wantsPushState &amp;&amp; this._hasPushState;
 this.fragment         = this.<span class="apidocCodeKeywordSpan">getFragment</span>();
 
 // Normalize root to always include a leading and trailing slash.
-this.root = (&#x27;/&#x27; + this.root + &#x27;/&#x27;).replace(rootStripper, &#x27;/&#x27;);
+this.root = ('/' + this.root + '/').replace(rootStripper, '/');
 
 // Transition from hashChange to pushState or vice versa if both are
 // requested.
-if (this._wantsHashChange &#x26;&#x26; this._wantsPushState) {
+if (this._wantsHashChange &amp;&amp; this._wantsPushState) {
 ...</pre></li>
     </ul>
 
@@ -5875,7 +5868,7 @@ if (this._wantsHashChange &#x26;&#x26; this._wantsPushState) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">getHash = function (window) {
   var match = (window || this).location.href.match(/#(.*)$/);
-  return match ? match[1] : &#x27;&#x27;;
+  return match ? match[1] : '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -5888,7 +5881,7 @@ getFragment: function(fragment) {
       fragment = this.<span class="apidocCodeKeywordSpan">getHash</span>();
     }
   }
-  return fragment.replace(routeStripper, &#x27;&#x27;);
+  return fragment.replace(routeStripper, '');
 },
 
 // Start the hash change handling, returning `true` if the current URL matches
@@ -5909,10 +5902,10 @@ getFragment: function(fragment) {
   var path = this.decodeFragment(
     this.location.pathname + this.getSearch()
   ).slice(this.root.length - 1);
-  return path.charAt(0) === &#x27;/&#x27; ? path.slice(1) : path;
+  return path.charAt(0) === '/' ? path.slice(1) : path;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  return path.charAt(0) === &#x27;/&#x27; ? path.slice(1) : path;
+  return path.charAt(0) === '/' ? path.slice(1) : path;
 },
 
 // Get the cross-browser normalized URL fragment from the path or hash.
@@ -5924,7 +5917,7 @@ getFragment: function(fragment) {
       fragment = this.getHash();
     }
   }
-  return fragment.replace(routeStripper, &#x27;&#x27;);
+  return fragment.replace(routeStripper, '');
 },
 ...</pre></li>
     </ul>
@@ -5939,8 +5932,8 @@ getFragment: function(fragment) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">getSearch = function () {
-  var match = this.location.href.replace(/#.*/, &#x27;&#x27;).match(/\?.+/);
-  return match ? match[0] : &#x27;&#x27;;
+  var match = this.location.href.replace(/#.*/, '').match(/\?.+/);
+  return match ? match[0] : '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // The default interval to poll for hash changes, if necessary, is
@@ -5949,14 +5942,14 @@ interval: 50,
 
 // Are we at the app root?
 atRoot: function() {
-  var path = this.location.pathname.replace(/[^\/]$/, &#x27;$&#x26;/&#x27;);
-  return path === this.root &#x26;&#x26; !this.<span class="apidocCodeKeywordSpan">getSearch</span>();
+  var path = this.location.pathname.replace(/[^\/]$/, '$&amp;/');
+  return path === this.root &amp;&amp; !this.<span class="apidocCodeKeywordSpan">getSearch</span>();
 },
 
 // Does the pathname match the root?
 matchRoot: function() {
   var path = this.decodeFragment(this.location.pathname);
-  var rootPath = path.slice(0, this.root.length - 1) + &#x27;/&#x27;;
+  var rootPath = path.slice(0, this.root.length - 1) + '/';
   return rootPath === this.root;
 ...</pre></li>
     </ul>
@@ -5972,14 +5965,14 @@ matchRoot: function() {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -6033,7 +6026,7 @@ var onceMap = function(map, name, callback, offer) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">loadUrl = function (fragment) {
-  // If the root doesn&#x27;t match, no routes can match either.
+  // If the root doesn't match, no routes can match either.
   if (!this.matchRoot()) return false;
   fragment = this.fragment = this.getFragment(fragment);
   return _.some(this.handlers, function(handler) {
@@ -6044,9 +6037,9 @@ var onceMap = function(map, name, callback, offer) {
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    addEventListener(&#x27;popstate&#x27;, this.checkUrl, false);
-  } else if (this._useHashChange &#x26;&#x26; !this.iframe) {
-    addEventListener(&#x27;hashchange&#x27;, this.checkUrl, false);
+    addEventListener('popstate', this.checkUrl, false);
+  } else if (this._useHashChange &amp;&amp; !this.iframe) {
+    addEventListener('hashchange', this.checkUrl, false);
   } else if (this._wantsHashChange) {
     this._checkUrlInterval = setInterval(this.checkUrl, this.interval);
   }
@@ -6073,7 +6066,7 @@ stop: function() {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">matchRoot = function () {
   var path = this.decodeFragment(this.location.pathname);
-  var rootPath = path.slice(0, this.root.length - 1) + &#x27;/&#x27;;
+  var rootPath = path.slice(0, this.root.length - 1) + '/';
   return rootPath === this.root;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -6083,7 +6076,7 @@ stop: function() {
 // match, returns `true`. If no defined routes matches the fragment,
 // returns `false`.
 loadUrl: function(fragment) {
-  // If the root doesn&#x27;t match, no routes can match either.
+  // If the root doesn't match, no routes can match either.
   if (!this.<span class="apidocCodeKeywordSpan">matchRoot</span>()) return false;
   fragment = this.fragment = this.getFragment(fragment);
   return _.some(this.handlers, function(handler) {
@@ -6109,34 +6102,34 @@ loadUrl: function(fragment) {
   if (!options || options === true) options = {trigger: !!options};
 
   // Normalize the fragment.
-  fragment = this.getFragment(fragment || &#x27;&#x27;);
+  fragment = this.getFragment(fragment || '');
 
-  // Don&#x27;t include a trailing slash on the root.
+  // Don't include a trailing slash on the root.
   var rootPath = this.root;
-  if (fragment === &#x27;&#x27; || fragment.charAt(0) === &#x27;?&#x27;) {
-    rootPath = rootPath.slice(0, -1) || &#x27;/&#x27;;
+  if (fragment === '' || fragment.charAt(0) === '?') {
+    rootPath = rootPath.slice(0, -1) || '/';
   }
   var url = rootPath + fragment;
 
   // Strip the hash and decode for matching.
-  fragment = this.decodeFragment(fragment.replace(pathStripper, &#x27;&#x27;));
+  fragment = this.decodeFragment(fragment.replace(pathStripper, ''));
 
   if (this.fragment === fragment) return;
   this.fragment = fragment;
 
   // If pushState is available, we use it to set the fragment as a real URL.
   if (this._usePushState) {
-    this.history[options.replace ? &#x27;replaceState&#x27; : &#x27;pushState&#x27;]({}, document.title, url);
+    this.history[options.replace ? 'replaceState' : 'pushState']({}, document.title, url);
 
-  // If hash changes haven&#x27;t been explicitly disabled, update the hash
+  // If hash changes haven't been explicitly disabled, update the hash
   // fragment to store history.
   } else if (this._wantsHashChange) {
     this._updateHash(this.location, fragment, options.replace);
-    if (this.iframe &#x26;&#x26; fragment !== this.getHash(this.iframe.contentWindow)) {
+    if (this.iframe &amp;&amp; fragment !== this.getHash(this.iframe.contentWindow)) {
       var iWindow = this.iframe.contentWindow;
 
       // Opening and closing the iframe tricks IE7 and earlier to push a
-      // history entry on hash-tag change.  When replace is true, we don&#x27;t
+      // history entry on hash-tag change.  When replace is true, we don't
       // want this.
       if (!options.replace) {
         iWindow.document.open();
@@ -6146,7 +6139,7 @@ loadUrl: function(fragment) {
       this._updateHash(iWindow.location, fragment, options.replace);
     }
 
-  // If you&#x27;ve told us that you explicitly don&#x27;t want fallback hashchange-
+  // If you've told us that you explicitly don't want fallback hashchange-
   // based history, then `navigate` becomes a page refresh.
   } else {
     return this.location.assign(url);
@@ -6190,10 +6183,10 @@ _bindRoutes: function() {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -6228,8 +6221,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -6250,7 +6243,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -6292,7 +6285,7 @@ initialize: function(){},
 
 // Manually bind a single named route to a callback. For example:
 //
-//     this.<span class="apidocCodeKeywordSpan">route</span>(&#x27;search/:query/p:num&#x27;, &#x27;search&#x27;, function(query
+//     this.<span class="apidocCodeKeywordSpan">route</span>('search/:query/p:num', 'search', function(query
 , num) {
 //       ...
 //     });
@@ -6314,71 +6307,71 @@ route: function(route, name, callback) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">start = function (options) {
-  if (History.started) throw new Error(&#x27;Backbone.history has already been started&#x27;);
+  if (History.started) throw new Error('Backbone.history has already been started');
   History.started = true;
 
   // Figure out the initial configuration. Do we need an iframe?
   // Is pushState desired ... is it available?
-  this.options          = _.extend({root: &#x27;/&#x27;}, this.options, options);
+  this.options          = _.extend({root: '/'}, this.options, options);
   this.root             = this.options.root;
   this._wantsHashChange = this.options.hashChange !== false;
-  this._hasHashChange   = &#x27;onhashchange&#x27; in window &#x26;&#x26; (document.documentMode === void 0 || document.documentMode &#x3e; 7);
-  this._useHashChange   = this._wantsHashChange &#x26;&#x26; this._hasHashChange;
+  this._hasHashChange   = 'onhashchange' in window &amp;&amp; (document.documentMode === void 0 || document.documentMode &gt; 7);
+  this._useHashChange   = this._wantsHashChange &amp;&amp; this._hasHashChange;
   this._wantsPushState  = !!this.options.pushState;
-  this._hasPushState    = !!(this.history &#x26;&#x26; this.history.pushState);
-  this._usePushState    = this._wantsPushState &#x26;&#x26; this._hasPushState;
+  this._hasPushState    = !!(this.history &amp;&amp; this.history.pushState);
+  this._usePushState    = this._wantsPushState &amp;&amp; this._hasPushState;
   this.fragment         = this.getFragment();
 
   // Normalize root to always include a leading and trailing slash.
-  this.root = (&#x27;/&#x27; + this.root + &#x27;/&#x27;).replace(rootStripper, &#x27;/&#x27;);
+  this.root = ('/' + this.root + '/').replace(rootStripper, '/');
 
   // Transition from hashChange to pushState or vice versa if both are
   // requested.
-  if (this._wantsHashChange &#x26;&#x26; this._wantsPushState) {
+  if (this._wantsHashChange &amp;&amp; this._wantsPushState) {
 
-    // If we&#x27;ve started off with a route from a `pushState`-enabled
-    // browser, but we&#x27;re currently in a browser that doesn&#x27;t support it...
-    if (!this._hasPushState &#x26;&#x26; !this.atRoot()) {
-      var rootPath = this.root.slice(0, -1) || &#x27;/&#x27;;
-      this.location.replace(rootPath + &#x27;#&#x27; + this.getPath());
+    // If we've started off with a route from a `pushState`-enabled
+    // browser, but we're currently in a browser that doesn't support it...
+    if (!this._hasPushState &amp;&amp; !this.atRoot()) {
+      var rootPath = this.root.slice(0, -1) || '/';
+      this.location.replace(rootPath + '#' + this.getPath());
       // Return immediately as browser will do redirect to new url
       return true;
 
-    // Or if we&#x27;ve started out with a hash-based route, but we&#x27;re currently
+    // Or if we've started out with a hash-based route, but we're currently
     // in a browser where it could be `pushState`-based instead...
-    } else if (this._hasPushState &#x26;&#x26; this.atRoot()) {
+    } else if (this._hasPushState &amp;&amp; this.atRoot()) {
       this.navigate(this.getHash(), {replace: true});
     }
 
   }
 
-  // Proxy an iframe to handle location events if the browser doesn&#x27;t
+  // Proxy an iframe to handle location events if the browser doesn't
   // support the `hashchange` event, HTML5 history, or the user wants
   // `hashChange` but not `pushState`.
-  if (!this._hasHashChange &#x26;&#x26; this._wantsHashChange &#x26;&#x26; !this._usePushState) {
-    this.iframe = document.createElement(&#x27;iframe&#x27;);
-    this.iframe.src = &#x27;javascript:0&#x27;;
-    this.iframe.style.display = &#x27;none&#x27;;
+  if (!this._hasHashChange &amp;&amp; this._wantsHashChange &amp;&amp; !this._usePushState) {
+    this.iframe = document.createElement('iframe');
+    this.iframe.src = 'javascript:0';
+    this.iframe.style.display = 'none';
     this.iframe.tabIndex = -1;
     var body = document.body;
-    // Using `appendChild` will throw on IE &#x3c; 9 if the document is not ready.
+    // Using `appendChild` will throw on IE &lt; 9 if the document is not ready.
     var iWindow = body.insertBefore(this.iframe, body.firstChild).contentWindow;
     iWindow.document.open();
     iWindow.document.close();
-    iWindow.location.hash = &#x27;#&#x27; + this.fragment;
+    iWindow.location.hash = '#' + this.fragment;
   }
 
   // Add a cross-platform `addEventListener` shim for older browsers.
   var addEventListener = window.addEventListener || function(eventName, listener) {
-    return attachEvent(&#x27;on&#x27; + eventName, listener);
+    return attachEvent('on' + eventName, listener);
   };
 
-  // Depending on whether we&#x27;re using pushState or hashes, and whether
-  // &#x27;onhashchange&#x27; is supported, determine how we check the URL state.
+  // Depending on whether we're using pushState or hashes, and whether
+  // 'onhashchange' is supported, determine how we check the URL state.
   if (this._usePushState) {
-    addEventListener(&#x27;popstate&#x27;, this.checkUrl, false);
-  } else if (this._useHashChange &#x26;&#x26; !this.iframe) {
-    addEventListener(&#x27;hashchange&#x27;, this.checkUrl, false);
+    addEventListener('popstate', this.checkUrl, false);
+  } else if (this._useHashChange &amp;&amp; !this.iframe) {
+    addEventListener('hashchange', this.checkUrl, false);
   } else if (this._wantsHashChange) {
     this._checkUrlInterval = setInterval(this.checkUrl, this.interval);
   }
@@ -6400,14 +6393,14 @@ route: function(route, name, callback) {
     <li>description and source-code<pre class="apidocCodePre">stop = function () {
   // Add a cross-platform `removeEventListener` shim for older browsers.
   var removeEventListener = window.removeEventListener || function(eventName, listener) {
-    return detachEvent(&#x27;on&#x27; + eventName, listener);
+    return detachEvent('on' + eventName, listener);
   };
 
   // Remove window listeners.
   if (this._usePushState) {
-    removeEventListener(&#x27;popstate&#x27;, this.checkUrl, false);
-  } else if (this._useHashChange &#x26;&#x26; !this.iframe) {
-    removeEventListener(&#x27;hashchange&#x27;, this.checkUrl, false);
+    removeEventListener('popstate', this.checkUrl, false);
+  } else if (this._useHashChange &amp;&amp; !this.iframe) {
+    removeEventListener('hashchange', this.checkUrl, false);
   }
 
   // Clean up the iframe if necessary.
@@ -6438,10 +6431,10 @@ route: function(route, name, callback) {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -6459,13 +6452,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -6483,7 +6476,7 @@ options.success = function(resp) {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -6495,8 +6488,8 @@ options.success = function(resp) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -6550,7 +6543,7 @@ var eventSplitter = /\s+/;
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.parse(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.set(attrs, options);
   this.changed = {};
@@ -6573,9 +6566,9 @@ var eventSplitter = /\s+/;
   var child;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // (the "constructor" property in your `extend` definition), or defaulted
   // by us to simply call the parent constructor.
-  if (protoProps &#x26;&#x26; _.has(protoProps, &#x27;constructor&#x27;)) {
+  if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
     child = protoProps.constructor;
   } else {
     child = function(){ return parent.apply(this, arguments); };
@@ -6585,11 +6578,11 @@ var eventSplitter = /\s+/;
   _.extend(child, parent, staticProps);
 
   // Set the prototype chain to inherit from `parent`, without calling
-  // `parent`&#x27;s constructor function and add the prototype properties.
+  // `parent`'s constructor function and add the prototype properties.
   child.prototype = _.create(parent.prototype, protoProps);
   child.prototype.constructor = child;
 
-  // Set a convenience property in case the parent&#x27;s prototype is needed
+  // Set a convenience property in case the parent's prototype is needed
   // later.
   child.__super__ = parent.prototype;
 
@@ -6604,8 +6597,8 @@ var eventSplitter = /\s+/;
 //
 //     var object = {};
 //     _.<span class="apidocCodeKeywordSpan">extend</span>(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -6633,7 +6626,7 @@ var eventSplitter = /\s+/;
   attrs = _.extend({}, this.attributes, attrs);
   var error = this.validationError = this.validate(attrs, options) || null;
   if (!error) return true;
-  this.trigger(&#x27;invalid&#x27;, this, error, _.extend(options, {validationError: error}));
+  this.trigger('invalid', this, error, _.extend(options, {validationError: error}));
   return false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -6676,7 +6669,7 @@ this._changing = true;
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -6759,7 +6752,7 @@ Events.listenToOnce = function(obj, name, callback) {
 // initialization logic.
 initialize: function(){},
 
-// Return a copy of the model&#x27;s `attributes` object.
+// Return a copy of the model's `attributes` object.
 toJSON: function(options) {
   return _.<span class="apidocCodeKeywordSpan">clone</span>(this.attributes);
 },
@@ -6789,13 +6782,13 @@ sync: function() {
 
   var destroy = function() {
     model.stopListening();
-    model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+    model.trigger('destroy', model, model.collection, options);
   };
 
   options.success = function(resp) {
     if (wait) destroy();
     if (success) success.call(options.context, model, resp, options);
-    if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+    if (!model.isNew()) model.trigger('sync', model, resp, options);
   };
 
   var xhr = false;
@@ -6803,7 +6796,7 @@ sync: function() {
     _.defer(options.success);
   } else {
     wrapError(this, options);
-    xhr = this.sync(&#x27;delete&#x27;, this, options);
+    xhr = this.sync('delete', this, options);
   }
   if (!wait) destroy();
   return xhr;
@@ -6859,10 +6852,10 @@ has: function(attr) {
     var serverAttrs = options.parse ? model.parse(resp, options) : resp;
     if (!model.set(serverAttrs, options)) return false;
     if (success) success.call(options.context, model, resp, options);
-    model.trigger(&#x27;sync&#x27;, model, resp, options);
+    model.trigger('sync', model, resp, options);
   };
   wrapError(this, options);
-  return this.sync(&#x27;read&#x27;, this, options);
+  return this.sync('read', this, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6884,13 +6877,13 @@ has: function(attr) {
 // form param named `model`.
 Backbone.emulateJSON = false;
 
-// Proxy Backbone class methods to Underscore functions, wrapping the model&#x27;s
-// `attributes` object or collection&#x27;s `models` array behind the scenes.
+// Proxy Backbone class methods to Underscore functions, wrapping the model's
+// `attributes` object or collection's `models` array behind the scenes.
 //
-// collection.filter(function(model) { return model.<span class="apidocCodeKeywordSpan">get</span>(&#x27;age&#x27;) &#x3e; 10 });
+// collection.filter(function(model) { return model.<span class="apidocCodeKeywordSpan">get</span>('age') &gt; 10 });
 // collection.each(this.addView);
 //
-// `Function#apply` can be slow so we use the method&#x27;s arg count, if we know it.
+// `Function#apply` can be slow so we use the method's arg count, if we know it.
 var addMethod = function(length, method, attribute) {
   switch (length) {
     case 1: return function() {
@@ -6914,7 +6907,7 @@ var addMethod = function(length, method, attribute) {
   return this.set(attrs, _.extend({}, options, {unset: true}));
 },
 
-// Determine if the model has changed since the last `&#x22;change&#x22;` event.
+// Determine if the model has changed since the last `"change"` event.
 // If you specify an attribute name, determine if that attribute has changed.
 hasChanged: function(attr) {
   if (attr == null) return !_.isEmpty(this.changed);
@@ -7006,7 +6999,7 @@ changedAttributes: function(diff) {
   return this.set(attrs, _.extend({}, options, {unset: true}));
 },
 
-// Determine if the model has changed since the last `&#x22;change&#x22;` event.
+// Determine if the model has changed since the last `"change"` event.
 // If you specify an attribute name, determine if that attribute has changed.
 hasChanged: function(attr) {
   if (attr == null) return !_.<span class="apidocCodeKeywordSpan">isEmpty</span>(this.changed);
@@ -7033,16 +7026,16 @@ hasChanged: function(attr) {
   return !this.has(this.idAttribute);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  model.trigger(&#x27;sync&#x27;, model, resp, options);
+  model.trigger('sync', model, resp, options);
 };
 wrapError(this, options);
 
 // Set temporary attributes if `{wait: true}` to properly find new ids.
-if (attrs &#x26;&#x26; wait) this.attributes = _.extend({}, attributes, attrs);
+if (attrs &amp;&amp; wait) this.attributes = _.extend({}, attributes, attrs);
 
-var method = this.<span class="apidocCodeKeywordSpan">isNew</span>() ? &#x27;create&#x27; : (options.patch ? &#x27;patch&#x27; : &#
-x27;update&#x27;);
-if (method === &#x27;patch&#x27; &#x26;&#x26; !options.attrs) options.attrs = attrs;
+var method = this.<span class="apidocCodeKeywordSpan">isNew</span>() ? 'create' : (options.patch ? 'patch' : &amp;#
+x27;update');
+if (method === 'patch' &amp;&amp; !options.attrs) options.attrs = attrs;
 var xhr = this.sync(method, this, options);
 
 // Restore attributes.
@@ -7080,20 +7073,20 @@ return xhr;
   return _[method](this[attribute]);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-// space-separated events `&#x22;change blur&#x22;, callback` and jQuery-style event
+// space-separated events `"change blur", callback` and jQuery-style event
 // maps `{event: callback}`).
 var eventsApi = function(iteratee, events, name, callback, opts) {
   var i = 0, names;
-  if (name &#x26;&#x26; typeof name === &#x27;object&#x27;) {
+  if (name &amp;&amp; typeof name === 'object') {
     // Handle event maps.
-    if (callback !== void 0 &#x26;&#x26; &#x27;context&#x27; in opts &#x26;&#x26; opts.context === void 0) opts.context = callback
+    if (callback !== void 0 &amp;&amp; 'context' in opts &amp;&amp; opts.context === void 0) opts.context = callback
 ;
-    for (names = _.<span class="apidocCodeKeywordSpan">keys</span>(name); i &#x3c; names.length ; i++) {
+    for (names = _.<span class="apidocCodeKeywordSpan">keys</span>(name); i &lt; names.length ; i++) {
       events = eventsApi(iteratee, events, names[i], name[names[i]], opts);
     }
-  } else if (name &#x26;&#x26; eventSplitter.test(name)) {
+  } else if (name &amp;&amp; eventSplitter.test(name)) {
     // Handle space-separated event names by delegating them individually.
-    for (names = name.split(eventSplitter); i &#x3c; names.length; i++) {
+    for (names = name.split(eventSplitter); i &lt; names.length; i++) {
       events = iteratee(events, names[i], callback, opts);
     }
 ...</pre></li>
@@ -7110,14 +7103,14 @@ var eventsApi = function(iteratee, events, name, callback, opts) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -7176,7 +7169,7 @@ var onceMap = function(map, name, callback, offer) {
     <li>example usage<pre class="apidocCodePre">...
 var cb = function(iteratee, instance) {
   if (_.isFunction(iteratee)) return iteratee;
-  if (_.isObject(iteratee) &#x26;&#x26; !instance._isModel(iteratee)) return modelMatcher(iteratee);
+  if (_.isObject(iteratee) &amp;&amp; !instance._isModel(iteratee)) return modelMatcher(iteratee);
   if (_.isString(iteratee)) return function(model) { return model.get(iteratee); };
   return iteratee;
 };
@@ -7210,10 +7203,10 @@ var modelMatcher = function(attrs) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -7265,8 +7258,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -7287,7 +7280,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -7345,7 +7338,7 @@ var Model = Backbone.Model = function(attributes, options) {
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.<span class="apidocCodeKeywordSpan">parse</span>(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.set(attrs, options);
   this.changed = {};
@@ -7375,7 +7368,7 @@ var Model = Backbone.Model = function(attributes, options) {
 // Creating a Backbone.View creates its initial element outside of the DOM,
 // if an existing element is not provided...
 var View = Backbone.View = function(options) {
-  this.cid = _.uniqueId(&#x27;view&#x27;);
+  this.cid = _.uniqueId('view');
   _.extend(this, _.<span class="apidocCodeKeywordSpan">pick</span>(options, viewOptions));
   this._ensureElement();
   this.initialize.apply(this, arguments);
@@ -7415,13 +7408,13 @@ var delegateEventSplitter = /^(\S+)\s*(.*)$/;
   return _.clone(this._previousAttributes);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-// events simply proxy through. &#x22;add&#x22; and &#x22;remove&#x22; events that originate
+// events simply proxy through. "add" and "remove" events that originate
 // in other collections are ignored.
 _onModelEvent: function(event, model, collection, options) {
   if (model) {
-    if ((event === &#x27;add&#x27; || event === &#x27;remove&#x27;) &#x26;&#x26; collection !== this) return;
-    if (event === &#x27;destroy&#x27;) this.remove(model, options);
-    if (event === &#x27;change&#x27;) {
+    if ((event === 'add' || event === 'remove') &amp;&amp; collection !== this) return;
+    if (event === 'destroy') this.remove(model, options);
+    if (event === 'change') {
       var prevId = this.modelId(model.<span class="apidocCodeKeywordSpan">previousAttributes</span>());
       var id = this.modelId(model.attributes);
       if (prevId !== id) {
@@ -7443,9 +7436,9 @@ _onModelEvent: function(event, model, collection, options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">save = function (key, val, options) {
-  // Handle both `&#x22;key&#x22;, value` and `{key: value}` -style arguments.
+  // Handle both `"key", value` and `{key: value}` -style arguments.
   var attrs;
-  if (key == null || typeof key === &#x27;object&#x27;) {
+  if (key == null || typeof key === 'object') {
     attrs = key;
     options = val;
   } else {
@@ -7455,10 +7448,10 @@ _onModelEvent: function(event, model, collection, options) {
   options = _.extend({validate: true, parse: true}, options);
   var wait = options.wait;
 
-  // If we&#x27;re not waiting and attributes exist, save acts as
+  // If we're not waiting and attributes exist, save acts as
   // `set(attr).save(null, opts)` with validation. Otherwise, check if
   // the model will be valid when the attributes, if any, are set.
-  if (attrs &#x26;&#x26; !wait) {
+  if (attrs &amp;&amp; !wait) {
     if (!this.set(attrs, options)) return false;
   } else if (!this._validate(attrs, options)) {
     return false;
@@ -7474,17 +7467,17 @@ _onModelEvent: function(event, model, collection, options) {
     model.attributes = attributes;
     var serverAttrs = options.parse ? model.parse(resp, options) : resp;
     if (wait) serverAttrs = _.extend({}, attrs, serverAttrs);
-    if (serverAttrs &#x26;&#x26; !model.set(serverAttrs, options)) return false;
+    if (serverAttrs &amp;&amp; !model.set(serverAttrs, options)) return false;
     if (success) success.call(options.context, model, resp, options);
-    model.trigger(&#x27;sync&#x27;, model, resp, options);
+    model.trigger('sync', model, resp, options);
   };
   wrapError(this, options);
 
   // Set temporary attributes if `{wait: true}` to properly find new ids.
-  if (attrs &#x26;&#x26; wait) this.attributes = _.extend({}, attributes, attrs);
+  if (attrs &amp;&amp; wait) this.attributes = _.extend({}, attributes, attrs);
 
-  var method = this.isNew() ? &#x27;create&#x27; : (options.patch ? &#x27;patch&#x27; : &#x27;update&#x27;);
-  if (method === &#x27;patch&#x27; &#x26;&#x26; !options.attrs) options.attrs = attrs;
+  var method = this.isNew() ? 'create' : (options.patch ? 'patch' : 'update');
+  if (method === 'patch' &amp;&amp; !options.attrs) options.attrs = attrs;
   var xhr = this.sync(method, this, options);
 
   // Restore attributes.
@@ -7499,10 +7492,10 @@ _onModelEvent: function(event, model, collection, options) {
 options = _.extend({validate: true, parse: true}, options);
 var wait = options.wait;
 
-// If we&#x27;re not waiting and attributes exist, save acts as
+// If we're not waiting and attributes exist, save acts as
 // `set(attr).<span class="apidocCodeKeywordSpan">save</span>(null, opts)` with validation. Otherwise, check if
 // the model will be valid when the attributes, if any, are set.
-if (attrs &#x26;&#x26; !wait) {
+if (attrs &amp;&amp; !wait) {
   if (!this.set(attrs, options)) return false;
 } else if (!this._validate(attrs, options)) {
   return false;
@@ -7522,9 +7515,9 @@ if (attrs &#x26;&#x26; !wait) {
     <li>description and source-code<pre class="apidocCodePre">set = function (key, val, options) {
   if (key == null) return this;
 
-  // Handle both `&#x22;key&#x22;, value` and `{key: value}` -style arguments.
+  // Handle both `"key", value` and `{key: value}` -style arguments.
   var attrs;
-  if (typeof key === &#x27;object&#x27;) {
+  if (typeof key === 'object') {
     attrs = key;
     options = val;
   } else {
@@ -7570,19 +7563,19 @@ if (attrs &#x26;&#x26; !wait) {
   // Trigger all relevant attribute changes.
   if (!silent) {
     if (changes.length) this._pending = options;
-    for (var i = 0; i &#x3c; changes.length; i++) {
-      this.trigger(&#x27;change:&#x27; + changes[i], this, current[changes[i]], options);
+    for (var i = 0; i &lt; changes.length; i++) {
+      this.trigger('change:' + changes[i], this, current[changes[i]], options);
     }
   }
 
-  // You might be wondering why there&#x27;s a `while` loop here. Changes can
-  // be recursively nested within `&#x22;change&#x22;` events.
+  // You might be wondering why there's a `while` loop here. Changes can
+  // be recursively nested within `"change"` events.
   if (changing) return this;
   if (!silent) {
     while (this._pending) {
       options = this._pending;
       this._pending = false;
-      this.trigger(&#x27;change&#x27;, this, options);
+      this.trigger('change', this, options);
     }
   }
   this._pending = false;
@@ -7595,7 +7588,7 @@ if (attrs &#x26;&#x26; !wait) {
   this.attributes = {};
   if (options.collection) this.collection = options.collection;
   if (options.parse) attrs = this.parse(attrs, options) || {};
-  var defaults = _.result(this, &#x27;defaults&#x27;);
+  var defaults = _.result(this, 'defaults');
   attrs = _.defaults(_.extend({}, defaults, attrs), defaults);
   this.<span class="apidocCodeKeywordSpan">set</span>(attrs, options);
   this.changed = {};
@@ -7622,10 +7615,10 @@ _.extend(Model.prototype, Events, {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -7643,13 +7636,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -7670,17 +7663,17 @@ options.success = function(resp) {
     var serverAttrs = options.parse ? model.parse(resp, options) : resp;
     if (!model.set(serverAttrs, options)) return false;
     if (success) success.call(options.context, model, resp, options);
-    model.trigger(&#x27;sync&#x27;, model, resp, options);
+    model.trigger('sync', model, resp, options);
   };
   wrapError(this, options);
-  return this.<span class="apidocCodeKeywordSpan">sync</span>(&#x27;read&#x27;, this, options);
+  return this.<span class="apidocCodeKeywordSpan">sync</span>('read', this, options);
 },
 
 // Set a hash of model attributes, and sync the model to the server.
-// If the server returns an attributes hash that differs, the model&#x27;s
+// If the server returns an attributes hash that differs, the model's
 // state will be `set` again.
 save: function(key, val, options) {
-  // Handle both `&#x22;key&#x22;, value` and `{key: value}` -style arguments.
+  // Handle both `"key", value` and `{key: value}` -style arguments.
 ...</pre></li>
     </ul>
 
@@ -7702,7 +7695,7 @@ save: function(key, val, options) {
 initialize: function(){},
 
 // The JSON representation of a Collection is an array of the
-// models&#x27; attributes.
+// models' attributes.
 toJSON: function(options) {
   return this.map(function(model) { return model.<span class="apidocCodeKeywordSpan">toJSON</span>(options); });
 },
@@ -7728,7 +7721,7 @@ sync: function() {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -7740,8 +7733,8 @@ sync: function() {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -7798,12 +7791,12 @@ var eventSplitter = /\s+/;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">url = function () {
   var base =
-    _.result(this, &#x27;urlRoot&#x27;) ||
-    _.result(this.collection, &#x27;url&#x27;) ||
+    _.result(this, 'urlRoot') ||
+    _.result(this.collection, 'url') ||
     urlError();
   if (this.isNew()) return base;
   var id = this.get(this.idAttribute);
-  return base.replace(/[^\/]$/, &#x27;$&#x26;/&#x27;) + encodeURIComponent(id);
+  return base.replace(/[^\/]$/, '$&amp;/') + encodeURIComponent(id);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7868,9 +7861,9 @@ var eventSplitter = /\s+/;
   var child;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // (the "constructor" property in your `extend` definition), or defaulted
   // by us to simply call the parent constructor.
-  if (protoProps &#x26;&#x26; _.has(protoProps, &#x27;constructor&#x27;)) {
+  if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
     child = protoProps.constructor;
   } else {
     child = function(){ return parent.apply(this, arguments); };
@@ -7880,11 +7873,11 @@ var eventSplitter = /\s+/;
   _.extend(child, parent, staticProps);
 
   // Set the prototype chain to inherit from `parent`, without calling
-  // `parent`&#x27;s constructor function and add the prototype properties.
+  // `parent`'s constructor function and add the prototype properties.
   child.prototype = _.create(parent.prototype, protoProps);
   child.prototype.constructor = child;
 
-  // Set a convenience property in case the parent&#x27;s prototype is needed
+  // Set a convenience property in case the parent's prototype is needed
   // later.
   child.__super__ = parent.prototype;
 
@@ -7899,8 +7892,8 @@ var eventSplitter = /\s+/;
 //
 //     var object = {};
 //     _.<span class="apidocCodeKeywordSpan">extend</span>(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -7925,7 +7918,7 @@ var eventSplitter = /\s+/;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_bindRoutes = function () {
   if (!this.routes) return;
-  this.routes = _.result(this, &#x27;routes&#x27;);
+  this.routes = _.result(this, 'routes');
   var route, routes = _.keys(this.routes);
   while ((route = routes.pop()) != null) {
     this.route(route, this.routes[route]);
@@ -7962,7 +7955,7 @@ var namedParam    = /(\(\?)?:\w+/g;
     <li>description and source-code<pre class="apidocCodePre">_extractParameters = function (route, fragment) {
   var params = route.exec(fragment).slice(1);
   return _.map(params, function(param, i) {
-    // Don&#x27;t decode the search params.
+    // Don't decode the search params.
     if (i === params.length - 1) return param || null;
     return param ? decodeURIComponent(param) : null;
   });
@@ -7970,16 +7963,16 @@ var namedParam    = /(\(\?)?:\w+/g;
     <li>example usage<pre class="apidocCodePre">...
 if (_.isFunction(name)) {
   callback = name;
-  name = &#x27;&#x27;;
+  name = '';
 }
 if (!callback) callback = this[name];
 var router = this;
 Backbone.history.route(route, function(fragment) {
   var args = router.<span class="apidocCodeKeywordSpan">_extractParameters</span>(route, fragment);
   if (router.execute(callback, args, name) !== false) {
-    router.trigger.apply(router, [&#x27;route:&#x27; + name].concat(args));
-    router.trigger(&#x27;route&#x27;, name, args);
-    Backbone.history.trigger(&#x27;route&#x27;, router, name, args);
+    router.trigger.apply(router, ['route:' + name].concat(args));
+    router.trigger('route', name, args);
+    Backbone.history.trigger('route', router, name, args);
   }
 });
 return this;
@@ -7996,18 +7989,18 @@ return this;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_routeToRegExp = function (route) {
-  route = route.replace(escapeRegExp, &#x27;\\$&#x26;&#x27;)
-               .replace(optionalParam, &#x27;(?:$1)?&#x27;)
+  route = route.replace(escapeRegExp, '\\$&amp;')
+               .replace(optionalParam, '(?:$1)?')
                .replace(namedParam, function(match, optional) {
-                 return optional ? match : &#x27;([^/?]+)&#x27;;
+                 return optional ? match : '([^/?]+)';
                })
-               .replace(splatParam, &#x27;([^?]*?)&#x27;);
-  return new RegExp(&#x27;^&#x27; + route + &#x27;(?:\\?([\\s\\S]*))?$&#x27;);
+               .replace(splatParam, '([^?]*?)');
+  return new RegExp('^' + route + '(?:\\?([\\s\\S]*))?$');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Manually bind a single named route to a callback. For example:
 //
-//     this.route(&#x27;search/:query/p:num&#x27;, &#x27;search&#x27;, function(query, num) {
+//     this.route('search/:query/p:num', 'search', function(query, num) {
 //       ...
 //     });
 //
@@ -8015,7 +8008,7 @@ route: function(route, name, callback) {
   if (!_.isRegExp(route)) route = this.<span class="apidocCodeKeywordSpan">_routeToRegExp</span>(route);
   if (_.isFunction(name)) {
     callback = name;
-    name = &#x27;&#x27;;
+    name = '';
   }
   if (!callback) callback = this[name];
   var router = this;
@@ -8044,7 +8037,7 @@ route: function(route, name, callback) {
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -8068,16 +8061,16 @@ Events.listenToOnce = function(obj, name, callback) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     callback = name;
-    name = &#x27;&#x27;;
+    name = '';
   }
   if (!callback) callback = this[name];
   var router = this;
   Backbone.history.route(route, function(fragment) {
     var args = router._extractParameters(route, fragment);
     if (router.<span class="apidocCodeKeywordSpan">execute</span>(callback, args, name) !== false) {
-      router.trigger.apply(router, [&#x27;route:&#x27; + name].concat(args));
-      router.trigger(&#x27;route&#x27;, name, args);
-      Backbone.history.trigger(&#x27;route&#x27;, router, name, args);
+      router.trigger.apply(router, ['route:' + name].concat(args));
+      router.trigger('route', name, args);
+      Backbone.history.trigger('route', router, name, args);
     }
   });
   return this;
@@ -8109,14 +8102,14 @@ Events.listenToOnce = function(obj, name, callback) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -8210,10 +8203,10 @@ _bindRoutes: function() {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -8248,8 +8241,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -8270,7 +8263,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -8305,16 +8298,16 @@ var onceMap = function(map, name, callback, offer) {
   if (!_.isRegExp(route)) route = this._routeToRegExp(route);
   if (_.isFunction(name)) {
     callback = name;
-    name = &#x27;&#x27;;
+    name = '';
   }
   if (!callback) callback = this[name];
   var router = this;
   Backbone.history.route(route, function(fragment) {
     var args = router._extractParameters(route, fragment);
     if (router.execute(callback, args, name) !== false) {
-      router.trigger.apply(router, [&#x27;route:&#x27; + name].concat(args));
-      router.trigger(&#x27;route&#x27;, name, args);
-      Backbone.history.trigger(&#x27;route&#x27;, router, name, args);
+      router.trigger.apply(router, ['route:' + name].concat(args));
+      router.trigger('route', name, args);
+      Backbone.history.trigger('route', router, name, args);
     }
   });
   return this;
@@ -8327,7 +8320,7 @@ initialize: function(){},
 
 // Manually bind a single named route to a callback. For example:
 //
-//     this.<span class="apidocCodeKeywordSpan">route</span>(&#x27;search/:query/p:num&#x27;, &#x27;search&#x27;, function(query
+//     this.<span class="apidocCodeKeywordSpan">route</span>('search/:query/p:num', 'search', function(query
 , num) {
 //       ...
 //     });
@@ -8354,10 +8347,10 @@ route: function(route, name, callback) {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -8375,13 +8368,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -8399,7 +8392,7 @@ options.success = function(resp) {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -8411,8 +8404,8 @@ options.success = function(resp) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -8458,7 +8451,7 @@ var eventSplitter = /\s+/;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">View = function (options) {
-  this.cid = _.uniqueId(&#x27;view&#x27;);
+  this.cid = _.uniqueId('view');
   _.extend(this, _.pick(options, viewOptions));
   this._ensureElement();
   this.initialize.apply(this, arguments);
@@ -8480,9 +8473,9 @@ var eventSplitter = /\s+/;
   var child;
 
   // The constructor function for the new subclass is either defined by you
-  // (the &#x22;constructor&#x22; property in your `extend` definition), or defaulted
+  // (the "constructor" property in your `extend` definition), or defaulted
   // by us to simply call the parent constructor.
-  if (protoProps &#x26;&#x26; _.has(protoProps, &#x27;constructor&#x27;)) {
+  if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
     child = protoProps.constructor;
   } else {
     child = function(){ return parent.apply(this, arguments); };
@@ -8492,11 +8485,11 @@ var eventSplitter = /\s+/;
   _.extend(child, parent, staticProps);
 
   // Set the prototype chain to inherit from `parent`, without calling
-  // `parent`&#x27;s constructor function and add the prototype properties.
+  // `parent`'s constructor function and add the prototype properties.
   child.prototype = _.create(parent.prototype, protoProps);
   child.prototype.constructor = child;
 
-  // Set a convenience property in case the parent&#x27;s prototype is needed
+  // Set a convenience property in case the parent's prototype is needed
   // later.
   child.__super__ = parent.prototype;
 
@@ -8511,8 +8504,8 @@ var eventSplitter = /\s+/;
 //
 //     var object = {};
 //     _.<span class="apidocCodeKeywordSpan">extend</span>(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -8543,17 +8536,17 @@ var eventSplitter = /\s+/;
 // an element from the `id`, `className` and `tagName` properties.
 _ensureElement: function() {
   if (!this.el) {
-    var attrs = _.extend({}, _.result(this, &#x27;attributes&#x27;));
-    if (this.id) attrs.id = _.result(this, &#x27;id&#x27;);
-    if (this.className) attrs[&#x27;class&#x27;] = _.result(this, &#x27;className&#x27;);
-    this.setElement(this.<span class="apidocCodeKeywordSpan">_createElement</span>(_.result(this, &#x27;tagName&#x27;)));
+    var attrs = _.extend({}, _.result(this, 'attributes'));
+    if (this.id) attrs.id = _.result(this, 'id');
+    if (this.className) attrs['class'] = _.result(this, 'className');
+    this.setElement(this.<span class="apidocCodeKeywordSpan">_createElement</span>(_.result(this, 'tagName')));
     this._setAttributes(attrs);
   } else {
-    this.setElement(_.result(this, &#x27;el&#x27;));
+    this.setElement(_.result(this, 'el'));
   }
 },
 
-// Set attributes from a hash on this view&#x27;s element.  Exposed for
+// Set attributes from a hash on this view's element.  Exposed for
 ...</pre></li>
     </ul>
 
@@ -8568,13 +8561,13 @@ _ensureElement: function() {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_ensureElement = function () {
   if (!this.el) {
-    var attrs = _.extend({}, _.result(this, &#x27;attributes&#x27;));
-    if (this.id) attrs.id = _.result(this, &#x27;id&#x27;);
-    if (this.className) attrs[&#x27;class&#x27;] = _.result(this, &#x27;className&#x27;);
-    this.setElement(this._createElement(_.result(this, &#x27;tagName&#x27;)));
+    var attrs = _.extend({}, _.result(this, 'attributes'));
+    if (this.id) attrs.id = _.result(this, 'id');
+    if (this.className) attrs['class'] = _.result(this, 'className');
+    this.setElement(this._createElement(_.result(this, 'tagName')));
     this._setAttributes(attrs);
   } else {
-    this.setElement(_.result(this, &#x27;el&#x27;));
+    this.setElement(_.result(this, 'el'));
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -8583,7 +8576,7 @@ _ensureElement: function() {
 // Creating a Backbone.View creates its initial element outside of the DOM,
 // if an existing element is not provided...
 var View = Backbone.View = function(options) {
-  this.cid = _.uniqueId(&#x27;view&#x27;);
+  this.cid = _.uniqueId('view');
   _.extend(this, _.pick(options, viewOptions));
   this.<span class="apidocCodeKeywordSpan">_ensureElement</span>();
   this.initialize.apply(this, arguments);
@@ -8621,7 +8614,7 @@ remove: function() {
   return this;
 },
 
-// Remove this view&#x27;s element from the document and all event listeners
+// Remove this view's element from the document and all event listeners
 // attached to it. Exposed for subclasses using an alternative DOM
 // manipulation API.
 ...</pre></li>
@@ -8643,17 +8636,17 @@ remove: function() {
 // an element from the `id`, `className` and `tagName` properties.
 _ensureElement: function() {
   if (!this.el) {
-    var attrs = _.extend({}, _.result(this, &#x27;attributes&#x27;));
-    if (this.id) attrs.id = _.result(this, &#x27;id&#x27;);
-    if (this.className) attrs[&#x27;class&#x27;] = _.result(this, &#x27;className&#x27;);
-    this.setElement(this._createElement(_.result(this, &#x27;tagName&#x27;)));
+    var attrs = _.extend({}, _.result(this, 'attributes'));
+    if (this.id) attrs.id = _.result(this, 'id');
+    if (this.className) attrs['class'] = _.result(this, 'className');
+    this.setElement(this._createElement(_.result(this, 'tagName')));
     this.<span class="apidocCodeKeywordSpan">_setAttributes</span>(attrs);
   } else {
-    this.setElement(_.result(this, &#x27;el&#x27;));
+    this.setElement(_.result(this, 'el'));
   }
 },
 
-// Set attributes from a hash on this view&#x27;s element.  Exposed for
+// Set attributes from a hash on this view's element.  Exposed for
 // subclasses using an alternative DOM manipulation API.
 ...</pre></li>
     </ul>
@@ -8675,8 +8668,8 @@ _ensureElement: function() {
   this.$el.remove();
 },
 
-// Change the view&#x27;s element (`this.el` property) and re-delegate the
-// view&#x27;s events on the new element.
+// Change the view's element (`this.el` property) and re-delegate the
+// view's events on the new element.
 setElement: function(element) {
   this.undelegateEvents();
   this.<span class="apidocCodeKeywordSpan">_setElement</span>(element);
@@ -8711,7 +8704,7 @@ setElement: function(element) {
 Events.once = function(name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.<span class="apidocCodeKeywordSpan">bind</span>(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 };
 
@@ -8731,7 +8724,7 @@ Events.listenToOnce = function(obj, name, callback) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">delegate = function (eventName, selector, listener) {
-  this.$el.on(eventName + &#x27;.delegateEvents&#x27; + this.cid, selector, listener);
+  this.$el.on(eventName + '.delegateEvents' + this.cid, selector, listener);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -8747,7 +8740,7 @@ Events.listenToOnce = function(obj, name, callback) {
   return this;
 },
 
-// Add a single event listener to the view&#x27;s element (or a child element
+// Add a single event listener to the view's element (or a child element
 // using `selector`). This only works for delegate-able events: not `focus`,
 // `blur`, and not `change`, `submit`, and `reset` in Internet Explorer.
 ...</pre></li>
@@ -8763,7 +8756,7 @@ Events.listenToOnce = function(obj, name, callback) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">delegateEvents = function (events) {
-  events || (events = _.result(this, &#x27;events&#x27;));
+  events || (events = _.result(this, 'events'));
   if (!events) return this;
   this.undelegateEvents();
   for (var key in events) {
@@ -8778,8 +8771,8 @@ Events.listenToOnce = function(obj, name, callback) {
     <li>example usage<pre class="apidocCodePre">...
 },
 
-// Change the view&#x27;s element (`this.el` property) and re-delegate the
-// view&#x27;s events on the new element.
+// Change the view's element (`this.el` property) and re-delegate the
+// view's events on the new element.
 setElement: function(element) {
   this.undelegateEvents();
   this._setElement(element);
@@ -8818,14 +8811,14 @@ setElement: function(element) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">listenTo = function (obj, name, callback) {
   if (!obj) return this;
-  var id = obj._listenId || (obj._listenId = _.uniqueId(&#x27;l&#x27;));
+  var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
   var listeningTo = this._listeningTo || (this._listeningTo = {});
   var listening = listeningTo[id];
 
   // This object is not listening to any other events on `obj` yet.
   // Setup the necessary references to track the listening callbacks.
   if (!listening) {
-    var thisId = this._listenId || (this._listenId = _.uniqueId(&#x27;l&#x27;));
+    var thisId = this._listenId || (this._listenId = _.uniqueId('l'));
     listening = listeningTo[id] = {obj: obj, objId: id, id: thisId, listeningTo: listeningTo, count: 0};
   }
 
@@ -8887,10 +8880,10 @@ var onceMap = function(map, name, callback, offer) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -8925,8 +8918,8 @@ var offApi = function(events, name, callback, options) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.<span class="apidocCodeKeywordSpan">on</span>(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.trigger(&#x27;expand&#x27;);
+//     object.<span class="apidocCodeKeywordSpan">on</span>('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -8947,7 +8940,7 @@ var eventSplitter = /\s+/;
     <li>description and source-code<pre class="apidocCodePre">once = function (name, callback, context) {
   // Map the event into a `{event: once}` object.
   var events = eventsApi(onceMap, {}, name, callback, _.bind(this.off, this));
-  if (typeof name === &#x27;string&#x27; &#x26;&#x26; context == null) callback = void 0;
+  if (typeof name === 'string' &amp;&amp; context == null) callback = void 0;
   return this.on(events, callback, context);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -9036,17 +9029,17 @@ unshift: function(model, options) {
 // an element from the `id`, `className` and `tagName` properties.
 _ensureElement: function() {
   if (!this.el) {
-    var attrs = _.extend({}, _.result(this, &#x27;attributes&#x27;));
-    if (this.id) attrs.id = _.result(this, &#x27;id&#x27;);
-    if (this.className) attrs[&#x27;class&#x27;] = _.result(this, &#x27;className&#x27;);
-    this.<span class="apidocCodeKeywordSpan">setElement</span>(this._createElement(_.result(this, &#x27;tagName&#x27;)));
+    var attrs = _.extend({}, _.result(this, 'attributes'));
+    if (this.id) attrs.id = _.result(this, 'id');
+    if (this.className) attrs['class'] = _.result(this, 'className');
+    this.<span class="apidocCodeKeywordSpan">setElement</span>(this._createElement(_.result(this, 'tagName')));
     this._setAttributes(attrs);
   } else {
-    this.setElement(_.result(this, &#x27;el&#x27;));
+    this.setElement(_.result(this, 'el'));
   }
 },
 
-// Set attributes from a hash on this view&#x27;s element.  Exposed for
+// Set attributes from a hash on this view's element.  Exposed for
 ...</pre></li>
     </ul>
 
@@ -9065,10 +9058,10 @@ _ensureElement: function() {
 
   var ids = obj ? [obj._listenId] : _.keys(listeningTo);
 
-  for (var i = 0; i &#x3c; ids.length; i++) {
+  for (var i = 0; i &lt; ids.length; i++) {
     var listening = listeningTo[ids[i]];
 
-    // If listening doesn&#x27;t exist, this object is not currently
+    // If listening doesn't exist, this object is not currently
     // listening to obj. Break out early.
     if (!listening) break;
 
@@ -9086,13 +9079,13 @@ var wait = options.wait;
 
 var destroy = function() {
   model.<span class="apidocCodeKeywordSpan">stopListening</span>();
-  model.trigger(&#x27;destroy&#x27;, model, model.collection, options);
+  model.trigger('destroy', model, model.collection, options);
 };
 
 options.success = function(resp) {
   if (wait) destroy();
   if (success) success.call(options.context, model, resp, options);
-  if (!model.isNew()) model.trigger(&#x27;sync&#x27;, model, resp, options);
+  if (!model.isNew()) model.trigger('sync', model, resp, options);
 ...</pre></li>
     </ul>
 
@@ -9110,7 +9103,7 @@ options.success = function(resp) {
 
   var length = Math.max(0, arguments.length - 1);
   var args = Array(length);
-  for (var i = 0; i &#x3c; length; i++) args[i] = arguments[i + 1];
+  for (var i = 0; i &lt; length; i++) args[i] = arguments[i + 1];
 
   eventsApi(triggerApi, this._events, name, void 0, args);
   return this;
@@ -9122,8 +9115,8 @@ options.success = function(resp) {
 //
 //     var object = {};
 //     _.extend(object, Backbone.Events);
-//     object.on(&#x27;expand&#x27;, function(){ alert(&#x27;expanded&#x27;); });
-//     object.<span class="apidocCodeKeywordSpan">trigger</span>(&#x27;expand&#x27;);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.<span class="apidocCodeKeywordSpan">trigger</span>('expand');
 //
 var Events = Backbone.Events = {};
 
@@ -9164,7 +9157,7 @@ var eventSplitter = /\s+/;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">undelegate = function (eventName, selector, listener) {
-  this.$el.off(eventName + &#x27;.delegateEvents&#x27; + this.cid, selector, listener);
+  this.$el.off(eventName + '.delegateEvents' + this.cid, selector, listener);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9180,7 +9173,7 @@ var eventSplitter = /\s+/;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">undelegateEvents = function () {
-  if (this.$el) this.$el.off(&#x27;.delegateEvents&#x27; + this.cid);
+  if (this.$el) this.$el.off('.delegateEvents' + this.cid);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -9188,8 +9181,8 @@ _removeElement: function() {
   this.$el.remove();
 },
 
-// Change the view&#x27;s element (`this.el` property) and re-delegate the
-// view&#x27;s events on the new element.
+// Change the view's element (`this.el` property) and re-delegate the
+// view's events on the new element.
 setElement: function(element) {
   this.<span class="apidocCodeKeywordSpan">undelegateEvents</span>();
   this._setElement(element);
@@ -9233,3 +9226,4 @@ setElement: function(element) {
     ]
 </div>
 </div>
+</body></html>
