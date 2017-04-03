@@ -1,17 +1,13 @@
-# api-documentation for  [backbone (v1.3.3)](https://github.com/jashkenas/backbone#readme)  [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-backbone.svg)](https://travis-ci.org/npmdoc/node-npmdoc-backbone)
+# api documentation for  [backbone (v1.3.3)](https://github.com/jashkenas/backbone#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-backbone.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-backbone) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-backbone.svg)](https://travis-ci.org/npmdoc/node-npmdoc-backbone)
 #### Give your JS App some Backbone with Models, Views, Collections, and Events.
 
 [![NPM](https://nodei.co/npm/backbone.png?downloads=true)](https://www.npmjs.com/package/backbone)
 
-# html version
+[![apidoc](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-backbone_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-backbone/build..beta..travis-ci.org/apidoc.html)
 
-- [https://npmdoc.github.io/node-npmdoc-backbone/build..beta..travis-ci.org/apidoc.html](https://npmdoc.github.io/node-npmdoc-backbone/build..beta..travis-ci.org/apidoc.html)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.npmPackageListing.svg)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-backbone/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-backbone_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-backbone/build..beta..travis-ci.org/apidoc.html)
-
-# package listing
-
-![package-listing](https://npmdoc.github.io/node-npmdoc-backbone/build/screen-capture.npmPackageListing.svg)
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
