@@ -12004,7 +12004,7 @@ header: '\
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-{{env.npm_package_name}}/build/screenCapture.npmPackageListing.svg) \
 \n\
 \n\
-![npmPackageDependencyTree](https://kaizhu256.github.io/node-npmdoc-{{env.npm_package_name}}/build/screenCapture.npmPackageDependencyTree.svg) \
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-{{env.npm_package_name}}/build/screenCapture.npmPackageDependencyTree.svg) \
 \n\
 \n\
 \n\
