@@ -1,9 +1,9 @@
 # api documentation for  [backbone (v1.3.3)](https://github.com/jashkenas/backbone#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-backbone.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-backbone) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-backbone.svg)](https://travis-ci.org/npmdoc/node-npmdoc-backbone)
 #### Give your JS App some Backbone with Models, Views, Collections, and Events.
 
-[![NPM](https://nodei.co/npm/backbone.png?downloads=true)](https://www.npmjs.com/package/backbone)
+[![NPM](https://nodei.co/npm/backbone.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/backbone)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-backbone_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-backbone/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.buildCi.browser.apidoc.html.png)](https://npmdoc.github.io/node-npmdoc-backbone/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-backbone/build/screenCapture.npmPackageListing.svg)
 
@@ -62,21 +62,17 @@
     "main": "backbone.js",
     "maintainers": [
         {
-            "name": "braddunbar",
-            "email": "dunbarb2@gmail.com"
+            "name": "braddunbar"
         },
         {
-            "name": "jashkenas",
-            "email": "jashkenas@gmail.com"
+            "name": "jashkenas"
         },
         {
-            "name": "jridgewell",
-            "email": "justin+npm@ridgewell.name"
+            "name": "jridgewell"
         }
     ],
     "name": "backbone",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jashkenas/backbone.git"
