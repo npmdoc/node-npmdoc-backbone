@@ -1,4 +1,7 @@
-# api documentation for  [backbone (v1.3.3)](https://github.com/jashkenas/backbone#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-backbone.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-backbone) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-backbone.svg)](https://travis-ci.org/npmdoc/node-npmdoc-backbone)
+# npmdoc-backbone
+
+#### basic api documentation for  [backbone (v1.3.3)](https://github.com/jashkenas/backbone#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-backbone.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-backbone) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-backbone.svg)](https://travis-ci.org/npmdoc/node-npmdoc-backbone)
+
 #### Give your JS App some Backbone with Models, Views, Collections, and Events.
 
 [![NPM](https://nodei.co/npm/backbone.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/backbone)
@@ -86,7 +89,8 @@
         "test": "karma start && coffee test/model.coffee && npm run lint"
     },
     "url": "http://backbonejs.org",
-    "version": "1.3.3"
+    "version": "1.3.3",
+    "bin": {}
 }
 ```
 
